@@ -46,6 +46,22 @@ export default async function ApprovalsPage() {
     (requirements ?? []).map((row) => [row.id as string, row.internal_ref as string]),
   );
 
+  const selectionIds = rows
+    .filter((row) => row.subject_type === "oem_selection")
+    .map((row) => row.subject_id);
+  const { data: selections } = selectionIds.length
+    ? await supabase
+        .from("oem_selection")
+        .select("id, requirement_line:requirement_line_id(requirement_id)")
+    : { data: [] };
+  const selectionRequirementById = new Map(
+    (selections ?? []).map((row) => [
+      row.id as string,
+      (row.requirement_line as unknown as { requirement_id: string } | null)
+        ?.requirement_id as string,
+    ]),
+  );
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -73,6 +89,14 @@ export default async function ApprovalsPage() {
                     className="text-primary text-xs underline-offset-4 hover:underline"
                   >
                     {referenceById.get(row.subject_id) ?? row.subject_id}
+                  </Link>
+                ) : row.subject_type === "oem_selection" &&
+                  selectionRequirementById.get(row.subject_id) ? (
+                  <Link
+                    href={`/requirements/${selectionRequirementById.get(row.subject_id)}/sourcing`}
+                    className="text-primary text-xs underline-offset-4 hover:underline"
+                  >
+                    Open sourcing
                   </Link>
                 ) : (
                   <p className="text-muted-foreground text-xs">{row.subject_id}</p>

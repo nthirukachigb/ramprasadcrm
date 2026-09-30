@@ -30,6 +30,23 @@ business modules**.
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
 - Unit tests (Vitest) and one Playwright smoke test
 
+## What Phase 3 delivers (OEM sourcing)
+
+- **Partner shortlist**: read-only suggestions per line (from the OEM/product
+  mappings and part-number matches), confirmed explicitly by a person before
+  anything is saved.
+- **Sourcing requests** per partner with lines and a due date, manually marked
+  sent, with an overdue flag. No automatic email.
+- **OEM responses** capture price, lead time, MOQ and validity, and keep
+  **availability (indication)** separate from **firm commitment**. A firm
+  commitment requires evidence (a note) and is versioned.
+- **Commitment change and withdrawal** create a new version with a required
+  reason; the old version is marked *changed*. In-place quantity edits are
+  blocked by the database.
+- **OEM selection** is proposed and then approved by the Owner in the
+  approvals inbox; an allocation cannot exceed the firm commitment unless an
+  override is recorded.
+
 ## What Phase 2 delivers (requirement / RFI)
 
 - **Requirement header**: RFI, RFQ, enquiry, tender, repeat and budgetary
@@ -119,7 +136,8 @@ Recorded from the versions installed at build time.
    - **SQL Editor:** run `supabase/APPLY_MANUALLY.sql`
      (`0001_foundation.sql`) first, then `supabase/APPLY_MANUALLY_PHASE1.sql`
      (`0002_masters.sql`), then `supabase/APPLY_MANUALLY_PHASE2.sql`
-     (`0003`–`0008`, the requirement/RFI phase).
+     (`0003`–`0008`, the requirement/RFI phase), then
+     `supabase/APPLY_MANUALLY_PHASE3.sql` (`0009`, OEM sourcing).
 
    All scripts are idempotent and can be run again safely.
 
@@ -160,6 +178,12 @@ Recorded from the versions installed at build time.
 
    ```bash
    npm run verify:phase2
+   ```
+
+6c. **Verify the Phase 3 sourcing schema** against the live project
+
+   ```bash
+   npm run verify:phase3
    ```
 
 7. **Run the app**
@@ -204,6 +228,7 @@ Never prefix a server-only variable with `NEXT_PUBLIC_`.
 | `npm run seed:requirements` | Seed/update synthetic requirements (Phase 2) |
 | `npm run verify:phase1` | Verify Phase 1 acceptance criteria against the live project |
 | `npm run verify:phase2` | Verify Phase 2 acceptance criteria against the live project |
+| `npm run verify:phase3` | Verify the Phase 3 sourcing schema against the live project |
 | `npm run format` | Prettier |
 
 ### End-to-end tests
@@ -284,10 +309,12 @@ supabase/
   migrations/0001_foundation.sql  0002_masters.sql
                  0003_requirements.sql 0004_documents.sql 0005_checklist.sql
                  0006_clarification.sql 0007_timeline.sql 0008_tiles.sql
+                 0009_sourcing.sql
   APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql  APPLY_MANUALLY_PHASE2.sql
+                      APPLY_MANUALLY_PHASE3.sql
   config.toml
 scripts/seed-demo-users.ts  seed-demo-masters.ts  seed-demo-requirements.ts
-         verify-phase1.ts  verify-phase2.ts
+         verify-phase1.ts  verify-phase2.ts  verify-phase3.ts
 tests/unit/  tests/e2e/
 docs/                      # PRD, TECH-STACK, IMPLEMENTATION-PLAN (source of truth)
 ```

@@ -86,6 +86,19 @@ export async function decideApproval(input: {
     }
   }
 
+  // OEM selection: approval gates the selection status (T3.5).
+  if (approval.subject_type === "oem_selection") {
+    const nextStatus = input.decision === "approved" ? "approved" : "rejected";
+    const { error: selectionError } = await supabase
+      .from("oem_selection")
+      .update({ status: nextStatus })
+      .eq("id", approval.subject_id);
+    if (selectionError) {
+      return { ok: false, error: "Could not update the OEM selection." };
+    }
+  }
+
+
 
   revalidatePath("/approvals");
   revalidatePath("/dashboard");

@@ -16,6 +16,7 @@
     "seed:requirements": "tsx scripts/seed-demo-requirements.ts",
     "verify:phase1": "tsx scripts/verify-phase1.ts",
     "verify:phase2": "tsx scripts/verify-phase2.ts",
+    "verify:phase3": "tsx scripts/verify-phase3.ts",
     "format": "prettier --write ."
   },
   "dependencies": {
