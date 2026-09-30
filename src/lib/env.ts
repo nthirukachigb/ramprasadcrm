@@ -26,6 +26,7 @@ const serverEnvSchema = z.object({
     .default("false")
     .transform((value) => value === "true"),
   DEMO_USER_PASSWORD: z.string().min(6).optional(),
+  FIELD_ENCRYPTION_KEY: z.string().min(1).optional(),
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -59,6 +60,7 @@ export function getServerEnv(): ServerEnv {
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     DEMO_MODE: process.env.DEMO_MODE,
     DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD,
+    FIELD_ENCRYPTION_KEY: process.env.FIELD_ENCRYPTION_KEY,
   });
   if (!parsed.success) {
     throw new Error(formatEnvError(parsed.error, "server"));
@@ -72,11 +74,17 @@ export function getServerEnv(): ServerEnv {
  * the demo sign-in action). Returns the value or throws a clear error.
  */
 export function requireServerVar(
-  name: "SUPABASE_SERVICE_ROLE_KEY" | "DEMO_USER_PASSWORD",
+  name:
+    | "SUPABASE_SERVICE_ROLE_KEY"
+    | "DEMO_USER_PASSWORD"
+    | "FIELD_ENCRYPTION_KEY",
 ): string {
-  const value = name === "SUPABASE_SERVICE_ROLE_KEY"
-    ? process.env.SUPABASE_SERVICE_ROLE_KEY
-    : process.env.DEMO_USER_PASSWORD;
+  const value =
+    name === "SUPABASE_SERVICE_ROLE_KEY"
+      ? process.env.SUPABASE_SERVICE_ROLE_KEY
+      : name === "DEMO_USER_PASSWORD"
+        ? process.env.DEMO_USER_PASSWORD
+        : process.env.FIELD_ENCRYPTION_KEY;
   if (!value) {
     throw new Error(
       `${name} is required for this operation but is not set. Add it to .env.local (see .env.example).`,

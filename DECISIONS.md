@@ -73,6 +73,49 @@ revisited with the business owner.
   `src/lib/env.ts` so the production build does not fail when they are absent;
   a clear error is thrown at first use.
 
+## Decisions made during Phase 1 (master data)
+
+- **D22 — Multi-tenancy is deferred; the demo is single-tenant.** The PRD
+  (Q-03) and TECH-STACK suggest `tenant_org_id` on every business table with an
+  `organisation` record. Phase 1 keeps the simple Phase 0 model and omits
+  tenant scoping rather than add an organisation-membership system that would
+  affect every RLS policy. Revisit before any second tenant or real data.
+- **D23 — Sensitive fields use AES-256-GCM field encryption**
+  (`src/lib/crypto.ts`, key `FIELD_ENCRYPTION_KEY`, base64 32 bytes). Tax
+  registration values and partner bank details are stored as `v1:<iv>:<tag>:<ct>`
+  payloads with a `*_last4` column for masked display. The key never reaches the
+  browser.
+- **D24 — Restricted tables use narrow RLS.**
+  `partner_bank_account`: Owner + Finance only. `tax_registration` and
+  `commission_agreement`: Owner, Finance, Admin. `portal_reference`: Owner,
+  Sales, Finance, Admin. Contacts: Owner, Sales, Operations, Admin. Everything
+  else is readable by any authenticated user and writable by Owner, Sales,
+  Operations, Admin.
+- **D25 — Exclusive representation is enforced in the database.** A trigger
+  blocks a second represented OEM when an exclusive one exists;
+  `public.create_partner_product(...)` is the approved write path and sets an
+  `app.exclusivity_override` when an Owner/Admin passes `p_override` with a
+  reason. The reason is also written via `app.audit_reason`.
+- **D26 — Overlapping commission agreements are rejected by a trigger**, not a
+  `btree_gist` exclusion constraint, so the migration needs no extension and
+  can return a clear, testable error (`OVERLAPPING_AGREEMENT`).
+- **D27 — Unit of measure is a controlled list in the app and `not null` in the
+  database**, satisfying "a product without a UoM cannot be saved".
+- **D28 — Master records are soft-deleted** (`is_active`) and Phase 1 defines no
+  DELETE policies, so history cannot be silently removed.
+- **D29 — One declarative create dialog** (`components/masters/forms.tsx` +
+  `record-dialog.tsx`) drives every master form. Client validation is light;
+  the server-side Zod schemas in `src/lib/schemas/masters.ts` are authoritative,
+  so there is a single source of validation truth and less duplicated UI.
+- **D30 — Approval wording is "evidence on file"**, never "compliant". A
+  certificate with no expiry date is treated as valid evidence; the UI shows
+  No evidence / Expired / Expiring / Evidence on file (valid).
+- **D31 — Deferred to later phases:** tenant/organisation scoping; contact
+  field masking per role; margin hiding in pricing history; merge approval for
+  fuzzy duplicates; product approval acknowledgements at quotation approval;
+  and a dedicated bank-detail reveal audit (the whole table is already
+  Owner/Finance only).
+
 ---
 
 ## What Phase 1 (master data) needs from this foundation

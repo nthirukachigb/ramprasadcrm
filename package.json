@@ -12,6 +12,8 @@
     "test:watch": "vitest",
     "test:e2e": "playwright test",
     "seed:users": "tsx scripts/seed-demo-users.ts",
+    "seed:masters": "tsx scripts/seed-demo-masters.ts",
+    "verify:phase1": "tsx scripts/verify-phase1.ts",
     "format": "prettier --write ."
   },
   "dependencies": {

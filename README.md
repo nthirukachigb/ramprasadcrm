@@ -28,7 +28,25 @@ business modules**.
   and the audit log
 - Shared foundations for later phases: `get-user`/`requireRole`, `EmptyState`,
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
-- Unit tests (Vitest) and one Playwright smoke test 
+- Unit tests (Vitest) and one Playwright smoke test
+
+## What Phase 1 delivers (master data)
+
+- **Customers**: organisations with divisions, typed locations, multiple
+  contacts, encrypted tax registrations and portal references (references only —
+  credentials are rejected). Duplicate organisation names are rejected.
+- **Products and parts**: internal part numbers with cross-referenced customer,
+  OEM and manufacturer part numbers, attributes (UoM required), approval
+  requirements and evidence ("evidence on file", never "compliant"), and
+  pricing history.
+- **Partners (OEMs/suppliers/subcontractors)**: one organisation record with
+  multiple types and locations (one OEM with three locations = one row + three
+  location rows), contacts, capabilities, dated commission agreements
+  (overlaps rejected) and restricted, encrypted bank details.
+- **Guards**: exclusive representation is blocked until an Owner override;
+  commission percentages are bounded 0–100; agreement periods cannot overlap.
+- A declarative dialog drives every master create form from one place; the
+  server-side Zod schemas are authoritative. 
 
 ---
 
@@ -72,13 +90,14 @@ Recorded from the versions installed at build time.
 
    Fill in the values (names only — see below).
 
-3. **Apply the database migration** to your Supabase project. Choose one:
+3. **Apply the database migrations** to your Supabase project. Choose one:
    - **CLI:** `supabase link --project-ref <your-project-ref>` then
-     `supabase db push` (uses `supabase/migrations/0001_foundation.sql`).
-   - **SQL Editor:** open `supabase/APPLY_MANUALLY.sql`, paste the whole file
-     into the Supabase SQL Editor, and run it.
+     `supabase db push` (uses `supabase/migrations/*.sql`, in order).
+   - **SQL Editor:** run `supabase/APPLY_MANUALLY.sql`
+     (`0001_foundation.sql`) first, then `supabase/APPLY_MANUALLY_PHASE1.sql`
+     (`0002_masters.sql`).
 
-   Both paths are idempotent and can be run again safely.
+   All scripts are idempotent and can be run again safely.
 
 4. **Seed the demo users** (synthetic only)
 
@@ -86,11 +105,25 @@ Recorded from the versions installed at build time.
    npm run seed:users
    ```
 
-   This creates or updates `owner@`, `sales@`, `operations@`, `finance@` and
-   `admin@demo.local` with `DEMO_USER_PASSWORD` and assigns one role each. It is
-   idempotent.
+   Creates or updates `owner@`, `sales@`, `operations@`, `finance@` and
+   `admin@demo.local` with `DEMO_USER_PASSWORD` and assigns one role each.
 
-5. **Run the app**
+5. **Seed synthetic master data** (synthetic only)
+
+   ```bash
+   npm run seed:masters
+   ```
+
+   3 customers, 2 partners (one OEM with three locations) and 4 products with
+   part numbers, an expired approval certificate and pricing history.
+
+6. **Verify the Phase 1 acceptance criteria** against the live project
+
+   ```bash
+   npm run verify:phase1
+   ```
+
+7. **Run the app**
 
    ```bash
    npm run dev
@@ -110,6 +143,7 @@ Recorded from the versions installed at build time.
 | `SUPABASE_SERVICE_ROLE_KEY` | **Server only** | Seed script and trusted admin work. Never expose. |
 | `DEMO_MODE` | **Server only** | `true` enables the demo banner and one-click sign-in |
 | `DEMO_USER_PASSWORD` | **Server only** | Password for the synthetic demo users |
+| `FIELD_ENCRYPTION_KEY` | **Server only** | Base64-encoded 32-byte key for AES-256-GCM field encryption (tax registrations, bank details) |
 
 Never prefix a server-only variable with `NEXT_PUBLIC_`.
 
@@ -127,6 +161,8 @@ Never prefix a server-only variable with `NEXT_PUBLIC_`.
 | `npm run test` | Vitest unit tests |
 | `npm run test:e2e` | Playwright smoke test |
 | `npm run seed:users` | Seed/update demo users |
+| `npm run seed:masters` | Seed/update synthetic master data (Phase 1) |
+| `npm run verify:phase1` | Verify Phase 1 acceptance criteria against the live project |
 | `npm run format` | Prettier |
 
 ### End-to-end tests
@@ -174,26 +210,31 @@ src/
   app/
     (auth)/login/          # email + password and one-click demo access
     (app)/                 # authenticated shell: dashboard + module placeholders
+      customers/[id]/      # real: customer master (Phase 1)
+      oems/[id]/           # real: partner master (Phase 1)
+      products/[id]/       # real: product master (Phase 1)
       admin/users/         # real: users and roles
       admin/audit/         # real: audit log
     layout.tsx  page.tsx  not-found.tsx
   components/
     ui/                    # shadcn/ui primitives
     shell/                 # app shell and navigation
-    auth/  admin/          # auth and admin pieces
+    auth/  admin/  masters/ # auth, admin, and the master-data form dialog
     empty-state.tsx  error-state.tsx  page-header.tsx
     status-badge.tsx  data-table-shell.tsx  placeholder-page.tsx
   lib/
     auth/                  # get-user, requireRole, pure role helpers, actions
     supabase/              # server / client / admin clients
-    schemas/               # Zod schemas
+    schemas/               # Zod schemas (auth, admin, masters)
+    masters/               # master-data server actions and status helpers
+    crypto.ts              # field encryption (server-only usage)
     env.ts  format.ts  utils.ts
   proxy.ts                 # session refresh + auth redirect (Next 16 proxy)
 supabase/
-  migrations/0001_foundation.sql
-  APPLY_MANUALLY.sql
+  migrations/0001_foundation.sql  0002_masters.sql
+  APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql
   config.toml
-scripts/seed-demo-users.ts
+scripts/seed-demo-users.ts  seed-demo-masters.ts  verify-phase1.ts
 tests/unit/  tests/e2e/
 docs/                      # PRD, TECH-STACK, IMPLEMENTATION-PLAN (source of truth)
 ```
