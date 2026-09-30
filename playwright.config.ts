@@ -8,6 +8,7 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
   reporter: "list",
+  expect: { timeout: 20_000 },
   use: {
     baseURL,
     trace: "on-first-retry",
@@ -15,7 +16,9 @@ export default defineConfig({
   projects: [
     {
       name: "desktop-chromium",
-      use: { ...devices["Desktop Chrome"] },
+      // Use the full Chromium build rather than the separate headless shell,
+      // which is not always downloadable in constrained environments.
+      use: { ...devices["Desktop Chrome"], channel: "chromium" },
     },
   ],
   webServer: process.env.SMOKE_BASE_URL

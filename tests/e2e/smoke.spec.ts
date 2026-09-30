@@ -21,7 +21,7 @@ test.describe("Phase 0 smoke", () => {
 
     await expect(page).toHaveURL(/\/dashboard/);
     await expect(
-      page.getByRole("heading", { name: "Dashboard" }),
+      page.getByRole("heading", { name: "Dashboard", level: 1 }),
     ).toBeVisible();
 
     // Admin role can see the Admin navigation item.
