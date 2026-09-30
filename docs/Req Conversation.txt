@@ -1,0 +1,1481 @@
+[Animesh Mahato] 14:49:33
+So, everyone, I'll give you some context before we get into Ram Prasad's requirement. So, basically, as you already know, he's into defense. So, for that, he had a requirement, and we talked about it briefly. It's a requirement for a CRM, and uh…
+
+[Animesh Mahato] 14:49:48
+The idea here is, he will explain you the requirement. All of you who are ready to build, or interested in building, be extra aware, take notes as he's explaining. And after he's done explaining, I will be brainstorming with him for a bit, in front of all of you guys, to show you how to get more ideas out.
+
+[Animesh Mahato] 14:50:07
+or how to get clarity out from a client on, you know, to build something. Once that is done, I will explain you how I would build it. That does not mean you have to build it the same way, but I'll explain you how to build it the way we have taught you everything in this Hackathon.
+
+[Animesh Mahato] 14:50:23
+And then how to deploy, and how to add that link in the dashboard, so that we can grade your assignments, and tomorrow you can get a chance. Everyone clear? Just have clear in the chat box. If you're clear, we'll get started.
+
+[Animesh Mahato] 14:50:35
+You have to select Animesh, and then message me now.
+
+[Animesh Mahato] 14:50:38
+So that I can also see it.
+
+[Animesh Mahato] 14:50:44
+Alright, amazing. So, you can please go ahead and explain your requirement.
+
+[Ram Prasad] 14:50:52
+Hi, good afternoon once again.
+
+[Ram Prasad] 14:50:56
+I think still the voice is lagging.
+
+[Animesh Mahato] 14:50:58
+A little bit now, I can feel still the lag is there a bit.
+
+[Ram Prasad] 14:50:59
+Yes, sir.
+
+[Ram Prasad] 14:51:02
+I'm also feeling, I don't know what is…
+
+[Ram Prasad] 14:51:06
+Thank you very much, Freedom with AI team. Animesh, everybody.
+
+[Ram Prasad] 14:51:13
+me this opportunity to present my case. Uh, as you all know by now that, uh, I'm a defense, uh, business advisor.
+
+[Ram Prasad] 14:51:24
+And having a 45 years of experience in a defence business. My main role is to advise various OEM who are manufacturing the component, product, equipment into the defence to grow their business.
+
+[Ram Prasad] 14:51:40
+Now, how we start?
+
+[Animesh Mahato] 14:51:41
+To interrupt you, again, it's starting to break more. Can you please check if possible?
+
+[Ram Prasad] 14:51:46
+I will… I will just, once again, just give me… I will disconnect this.
+
+[Animesh Mahato] 14:51:48
+Yes.
+
+[Ram Prasad] 14:52:23
+Is it better now, slightly?
+
+[Animesh Mahato] 14:52:26
+Yeah, I think it's better now.
+
+[Ram Prasad] 14:52:31
+I've changed, I do not know what is the reason.
+
+[Ram Prasad] 14:52:38
+Can I go ahead?
+
+[Animesh Mahato] 14:52:40
+Yes, yes, you can go ahead. I think it's better than before.
+
+[Ram Prasad] 14:52:47
+So, how this starts, that, uh…
+
+[Ram Prasad] 14:52:54
+We generate the inquiry from the…
+
+[Ram Prasad] 14:52:57
+Defense bias.
+
+[Ram Prasad] 14:52:59
+And this inquiry comes…
+
+[Ram Prasad] 14:53:02
+From their portals.
+
+[Ram Prasad] 14:53:06
+We generate that in person, or it comes in the demo.
+
+[Ram Prasad] 14:53:14
+or maybe any other way by email it comes, so that we convert into the Excel format.
+
+[Ram Prasad] 14:53:21
+And after converting into email or Excel, we make the analyze that whether we have quoted this item earlier or not, what is the prevalence going on, if we have any market intelligence, that how much we have to quote.
+
+[Ram Prasad] 14:53:37
+Then we send the quotation to the client or the different customer within the due date. There is for all the project, all the quotation, there is some due date. They give us a 30 days time or 45 days time. Before that, we have to quote.
+
+[Ram Prasad] 14:53:52
+So, we could put that, that…
+
+[Ram Prasad] 14:53:55
+it goes under process, and then we get the order, we are L1 or we are qualified. Now, the criteria for qualification is, we should be first technically qualified to meet their specification, and then we should also be qualified in the price.
+
+[Ram Prasad] 14:54:12
+Which is, uh…
+
+[Animesh Mahato] 14:54:21
+Sorry, uh…
+
+[Animesh Mahato] 14:54:23
+I think we lost you.
+
+[Animesh Mahato] 14:54:26
+Uh, can you guys hear him? Because I cannot hear anything. Okay.
+
+[Animesh Mahato] 14:54:35
+I think it's rejoining.
+
+[Animesh Mahato] 14:54:40
+So… okay.
+
+[Animesh Mahato] 14:54:52
+In the meantime, everyone, have you taken notes?
+
+[Animesh Mahato] 14:55:04
+Kundan, can you add him to Spotlight once again?
+
+[Animesh Mahato] 14:55:10
+I think you're back. Just give me a minute, I'll add you to Spotlight.
+
+[Animesh Mahato] 14:55:47
+Kundan is adding you to Spotlight, just give it a minute.
+
+[Animesh Mahato] 14:57:37
+Alright, everyone, so I think the technical issue is resolved. Let me spotlight you.
+
+[Animesh Mahato] 14:57:42
+Perfect. Please go on.
+
+[Ram Prasad] 14:57:47
+Yes, sorry for interruption. I think there is some issue of internet. So I was telling you, then we get the inquiry, then we make the quotation. Before making the quotation, we have to study all the specification, all the requirement of the inquiry, go line by line.
+
+[Ram Prasad] 14:58:02
+Because after we quote the something, for example, if payment terms is 30 days and we quote 45 days, so we'll get the payment term of 45 days. Then all the items line by line, it should be qualified. There are, I think, five to six type of approval required in defense.
+
+[Ram Prasad] 14:58:19
+we have to see what approval is required. So as for that, we give the quotation to the client. Then he technically qualified us, then they open the prize bid, and if we qualify in the prize bid, we get the order. After we get the order, we have to.
+
+[Ram Prasad] 14:58:35
+Understand that is this order is aligned with our quotation or not.
+
+[Ram Prasad] 14:58:41
+It should not happen that we have quoted for one line item Monday rupees and they give us the price of 90 rupees. Sometime by mistake, sometime knowingly or sometime based on the last price, they alter the price. So we have to verify that. Then we have to send the order acknowledgement.
+
+[Ram Prasad] 14:58:56
+So we send the order acknowledgement, and we see that these items have a delivery period. Suppose 3 months, 6 months, or 1 year, as per the product.
+
+[Ram Prasad] 14:59:07
+After…
+
+[Ram Prasad] 14:59:08
+we manufacture that, then there is a criteria that client, the user, maybe from Navy, Army, Air Force, Coast Guard, they come to our factory.
+
+[Ram Prasad] 14:59:18
+They do the pre-dispatch inspection, which is known as a PDI. So they inspect as per the specification, and then when they…
+
+[Ram Prasad] 14:59:29
+Past this, when they accept that, we have to dispatch to the different location, wherever it is given in the PO. After it is dispatched, the customer will again accept at this premises, and then we have to follow up for the payment. So payment may be 30 days, again delivery 45 days.
+
+[Ram Prasad] 14:59:46
+So we have to have that record. So once the payment comes, then the cycle is closed.
+
+[Ram Prasad] 14:59:53
+But again, when next inquiry comes.
+
+[Ram Prasad] 14:59:56
+Then we have to see in mind whether we have got the previous order of this line item or not, or whether we have quoted, or whether we have lost, or whether we are approved or not approved. So all that criteria has to be changed. So as of now, all the things we are doing in Excel, we are able to do it.
+
+[Ram Prasad] 15:00:14
+But it is a bit slow, and it doesn't give us the information immediately, and sometimes it is not accurate. If the person who is handling this, if he has not entered one order, or he has not entered one invoice, or he has not entered part number.
+
+[Ram Prasad] 15:00:30
+So the information which is coming to me may not be correct.
+
+[Ram Prasad] 15:00:35
+So we want to automate that. So I think I explained that if I will share the template of RFQs, inquiry, orders, payment, whatever we are maintaining in Excel to Mr.
+
+[Ram Prasad] 15:00:51
+Animesh, then he can share with you all. And if you have any doubt, you can just ask me.
+
+[Animesh Mahato] 15:00:57
+Mm-hmm.
+
+[Ram Prasad] 15:00:57
+Anything else in which you want?
+
+[Animesh Mahato] 15:01:01
+So, I think you gave a very good detailed explanation. I even took notes, so I'll walk you through my notes, you tell me if I missed something. But before that, how many of you took the notes?
+
+[Ram Prasad] 15:01:09
+Yes.
+
+[Animesh Mahato] 15:01:11
+Just type me in the chat box, select animation, type me. If your camera's on, you can just do this. Perfect.
+
+[Animesh Mahato] 15:01:18
+You know what, then? I have, uh… Nagaduga, I have Natasha, I have…
+
+[Animesh Mahato] 15:01:24
+Uh, Shankar Narayan…
+
+[Animesh Mahato] 15:01:26
+And… alright.
+
+[Animesh Mahato] 15:01:28
+Have Mahesh. Perfect.
+
+[Ram Prasad] 15:01:29
+Animesh, Animesh, one more thing. If, uh, the people who are interested in this project, and you still have, they have some doubt, I think you can share my number with them. They can directly also contact me one-to-one. Absolutely no problem.
+
+[Animesh Mahato] 15:01:42
+Um, yeah, but it would be too many messages you would get, so…
+
+[Ram Prasad] 15:01:46
+Okay, let it come through you, then.
+
+[Animesh Mahato] 15:01:48
+Yeah, so we'll get…
+
+[Ram Prasad] 15:01:49
+You can filter that, and let it come to me then.
+
+[Animesh Mahato] 15:01:53
+Yeah, so we'll make sure… I'll make sure in the next one hour I'll get as many questions resolved as possible by walking through my framework, and then people should have minimal questions that I will clarify in the call itself.
+
+[Ram Prasad] 15:02:07
+Shortly.
+
+[Animesh Mahato] 15:02:08
+So, this is the flow that I am able to get. You can correct me wherever I am, uh, you know, getting the… any gaps are there. By the way, everyone, please lower your hands so that me and Prabhasath could be on top of the spotlight. Alright. So, first is, uh, you are a defense contract consultant for companies, right?
+
+[Animesh Mahato] 15:02:26
+That is the…
+
+[Ram Prasad] 15:02:27
+Yes, very correct.
+
+[Animesh Mahato] 15:02:29
+Now, whenever a lead or inquiry comes, it can come via email or any other sources.
+
+[Ram Prasad] 15:02:33
+Yes.
+
+[Animesh Mahato] 15:02:34
+And then, you're creating a quotation by studying the requirement based on the… your market intelligence and any past intelligence on the similar kind of product that you built.
+
+[Ram Prasad] 15:02:44
+Very correct.
+
+[Animesh Mahato] 15:02:44
+Or, basically delivered. Then, we have to send a quotation after studying the requirement, and usually, it takes 30 to 45 days of processing time.
+
+[Ram Prasad] 15:02:54
+Yes.
+
+[Animesh Mahato] 15:02:55
+And then a reply comes with qualification, which is based on classifications, and one more I think you mentioned is…
+
+[Ram Prasad] 15:03:01
+No, which is not classification, it is technical compliance.
+
+[Animesh Mahato] 15:03:06
+Okay.
+
+[Ram Prasad] 15:03:07
+One, and second thing on the price. Suppose there are five people who are technically qualified. So out of that five, whosoever L1 will get the offer.
+
+[Animesh Mahato] 15:03:14
+Hmm.
+
+[Animesh Mahato] 15:03:18
+Alright.
+
+[Ram Prasad] 15:03:18
+Or… or if quantity is more, then they may split in L1 and L2.
+
+[Animesh Mahato] 15:03:24
+Understood. L1 means the lowest… yeah. And then you get the order, but you have to verify the order also, because sometimes there could be mismatches, so you cannot just…
+
+[Ram Prasad] 15:03:26
+Lowest one, lowest one.
+
+[Ram Prasad] 15:03:34
+Yes, yes. That is very, very important before acceptance of the order, because once you accept the order, then it becomes the Bible.
+
+[Animesh Mahato] 15:03:41
+Hmm.
+
+[Animesh Mahato] 15:03:43
+And then we have sending the order acknowledgement, that we accepted the order, and usually a delivery period could last from 3 to 12 months.
+
+[Ram Prasad] 15:03:48
+Yes.
+
+[Ram Prasad] 15:03:53
+Yes, correct.
+
+[Animesh Mahato] 15:03:54
+And then the PDI inspections from the defense agencies happen.
+
+[Animesh Mahato] 15:03:58
+And then dispatch happens, and then the customer accepts the delivery, and then the payment comes. Payment terms are subject to the thing, so payment…
+
+[Ram Prasad] 15:04:06
+Yes.
+
+[Animesh Mahato] 15:04:09
+Sounds good.
+
+[Ram Prasad] 15:04:10
+As per the terms of payment.
+
+[Animesh Mahato] 15:04:11
+Yeah, 30 plus days to anything that could be there. And finally, if any other order comes again in the same thing, the whole cycle needs to repeat again and again.
+
+[Ram Prasad] 15:04:14
+Yes, yes.
+
+[Ram Prasad] 15:04:21
+Correct, correct, correct. So when the next order comes, then our job becomes a little more difficult. If first time is, we can quote whatever. But if next inquiry comes, then we have to analyze whether we have got the order for that, we have quoted for that or not in the past.
+
+[Ram Prasad] 15:04:37
+Or whether we have lost this. If lost, then whom to lost to competitor detail. And this PDI inspection happens when we give the PDI call. They will not come just like that. We have to give a PDI call. So before that you can add PDI call, then PDI inspection.
+
+[Ram Prasad] 15:04:53
+We have to give a PDA call that items are ready, tested, and sometimes we have to send the test report, internal test report.
+
+[Ram Prasad] 15:05:06
+Yes, correct.
+
+[Animesh Mahato] 15:05:12
+Anything else we are missing here?
+
+[Ram Prasad] 15:05:14
+No, I think now you've covered all the points, almost.
+
+[Animesh Mahato] 15:05:17
+Perfect. I'll try to simplify this pipeline. So as you can see in your pipeline, there are 16 major steps. I'll try to group them in certain activities so that in your system, it could be easier to understand. And when it comes to pain points, right now, the current system is slow because it's based on Excel sheets.
+
+[Animesh Mahato] 15:05:35
+Right? And any inaccuracy could cost you a lot of business. That is the second big problem. What is the… any other pain points that you have currently?
+
+[Ram Prasad] 15:05:44
+Uh, one more thing I wanted to… I think the pain point is this, inaccuracy is very correct, because suppose one line item is there, which, as per PO, is 100 rupees.
+
+[Ram Prasad] 15:05:55
+But while entering, if the person who is entering has put 10, one zero is missed.
+
+[Ram Prasad] 15:06:01
+So the billing will be done after the 10. So we will be in the loose. So I think inaccuracy, that has to be collected. Third thing, there is a list of items for the approvals. There is four or five agencies who give the approval before we supply. So that also has to be maintained.
+
+[Ram Prasad] 15:06:19
+Cross-check with the item you're going to quote or you're going to supply.
+
+[Animesh Mahato] 15:06:24
+So, this is more like a thing to take care of, more than, like, additional things we can add. Maintaining the list of items, uh, for…
+
+[Ram Prasad] 15:06:28
+Yes, sir.
+
+[Ram Prasad] 15:06:36
+Which are already approved.
+
+[Animesh Mahato] 15:06:37
+Which are already approved. So, this approval, is it something that you acquire once, and they can… you can keep supplying that same item?
+
+[Ram Prasad] 15:06:44
+Yeah, this is approval, uh, which our different agency gives. We have to apply, we have to give sample, we have to get the item tested, and this is valid for 3 years to 5 years.
+
+[Ram Prasad] 15:06:54
+After that, again, we have to go for renewal.
+
+[Animesh Mahato] 15:06:57
+Okay.
+
+[Ram Prasad] 15:06:58
+And it is not only component. It is a system approval also. It is a company approval also, like, say, ISO 9000, 9100, AS 14000. So all these criteria, these are on renewal basis.
+
+[Ram Prasad] 15:07:15
+So they are valid for three years, sometimes five years.
+
+[Animesh Mahato] 15:07:19
+Makes sense. Apart from that, any other pain point you notice in running your business? If you're looking at it as a CRM problem, but if you have to zoom out a bit, okay, Animesh, if I can do this in my business, then I would be much more happy. What is that one activity that you do on a daily basis?
+
+[Ram Prasad] 15:07:20
+Yes.
+
+[Ram Prasad] 15:07:35
+One activity I will foresee, in a defense business, in all the order, there is a LD clause, which is a liquidity damage, which is 0.5% per week. So what happens if suppose my due date is 30th of September?
+
+[Animesh Mahato] 15:07:51
+Hmm.
+
+[Ram Prasad] 15:07:51
+So, I have to supply the item before 30th of September. It should reach to my client's premises. If it is reaching late, then they will charge the LD.
+
+[Ram Prasad] 15:08:02
+But if I write a letter to them before the due date and before the supplying, that because of the geopolitical reason, because of shortage of raw material, because of not giving the correct specification, this delivery is going to delay. Now, instead of 30th September, the delivery will be 30th October. So please give me the delivery extension without LD.
+
+[Ram Prasad] 15:08:25
+So, if we write that letter and follow up with the customer, you can get a delivery extension that LD can be avoided. So, that is a big, actually, things which we have to take the note of that.
+
+[Animesh Mahato] 15:08:35
+Yeah.
+
+[Animesh Mahato] 15:08:37
+Nice.
+
+[Animesh Mahato] 15:08:39
+So, liquidation, what is it called? Liquidation?
+
+[Ram Prasad] 15:08:41
+Liquidity… liquidity damage. Liquidity damage.
+
+[Animesh Mahato] 15:08:45
+20…
+
+[Ram Prasad] 15:08:46
+Damage.
+
+[Ram Prasad] 15:08:47
+It is basically late delivery charges.
+
+[Animesh Mahato] 15:08:50
+Okay, I'm going to simplify.
+
+[Ram Prasad] 15:08:51
+Very simple word, late delivery charges.
+
+[Animesh Mahato] 15:08:55
+So, to avoid this…
+
+[Animesh Mahato] 15:08:59
+Automatic.
+
+[Animesh Mahato] 15:09:00
+Follow up.
+
+[Animesh Mahato] 15:09:03
+With request.
+
+[Ram Prasad] 15:09:04
+Before the due date.
+
+[Animesh Mahato] 15:09:10
+Okay, this is one good use case our systems can automatically do. If a due date is coming, it can alert you that, hi, due dates are 15 days or 30 days. Would you like to write me, uh, automatic LD, uh, you know, extension clock?
+
+[Ram Prasad] 15:09:15
+Correct.
+
+[Ram Prasad] 15:09:18
+Yes, yes.
+
+[Ram Prasad] 15:09:25
+Waiver letter, ILD letter.
+
+[Animesh Mahato] 15:09:28
+Yeah, so that we can do. And any other thing that you right now face issue with your business that takes a lot of your time on a general basis?
+
+[Ram Prasad] 15:09:40
+Well, that's the payment collection things, no? If we are not maintaining a correct record when the payment is due, then the cash flow issue comes.
+
+[Ram Prasad] 15:09:48
+So payment collection on time. So when it is due 15 days before, if reminder letter goes to the client, then see, generally what happened, the cash collection, as we know, cash is the king in a business, and especially for the small scale industries.
+
+[Animesh Mahato] 15:09:48
+Hmm.
+
+[Animesh Mahato] 15:09:55
+Hmm.
+
+[Ram Prasad] 15:10:06
+Generally, people, what they do, they follow up when the due date comes. Suppose 30 days, they will follow 30 days. When my person goes to the customer for collecting of the payment, they say your invoice is not there, your certificate of conformance is not there, your approval letter is not there. So there should be that, as per the government of India now, all the defense.
+
+[Ram Prasad] 15:10:28
+buyer, they should accept the item within 7 days. But if any of the thing is not theirs, whatever documents listed in the PO, then it will be hanging. When my person goes for a payment, they say, yeah, this document is not there. So within 7 days, then maybe after another 7 days, we have to follow up for payment. So that reminder to my sales team.
+
+[Ram Prasad] 15:10:50
+will also be important, even not to sales team, even to the customer also, that they should be on time.
+
+[Animesh Mahato] 15:10:56
+Yeah, this is one of the biggest gaps. If you see… if you don't do any of this, if you just do this all payment collection on time, that would be, like, biggest, you know, leverage, because your cash flow will be in control. I think I got a pretty much good idea, so…
+
+[Ram Prasad] 15:11:02
+Yes, lot of things.
+
+[Ram Prasad] 15:11:06
+Yeah, yeah, yeah.
+
+[Ram Prasad] 15:11:09
+Bill will be coming.
+
+[Animesh Mahato] 15:11:12
+So, uh, everyone, just…
+
+[Ram Prasad] 15:11:13
+And in fact, one more point you can add, which I think for manufacturing of this item, we have to buy a lot of item.
+
+[Animesh Mahato] 15:11:17
+Yeah.
+
+[Animesh Mahato] 15:11:21
+Hmm.
+
+[Ram Prasad] 15:11:21
+So control from the supplier side. See, as the price negotiation meeting happens with my customer, if I quote 100, they will say 90 or like that price negotiation. So we like bulk buying price negotiation. So like that, from the supplier point of view, whatever major item, at least we should have a clear focus on that, whether we buying on the right time or not.
+
+[Ram Prasad] 15:11:44
+We are buying the approved product or not and whether the product is coming online on time or not. So I think that is from buying side also it is important.
+
+[Animesh Mahato] 15:11:54
+Hmm…
+
+[Animesh Mahato] 15:11:56
+So it's like a two-way system, because you're a consultant, you have to maintain the buyer and seller both. Yep.
+
+[Ram Prasad] 15:12:00
+Yes, both that thing.
+
+[Animesh Mahato] 15:12:02
+Okay, so I'll draw a small graph of the current business model from what I understand is. So there are suppliers.
+
+[Animesh Mahato] 15:12:11
+And then there are, let's say, defense companies or defense agencies.
+
+[Animesh Mahato] 15:12:19
+Now, with your experience, you're able to facilitate this supply to demand by getting the orders, right? So, can you tell me your company's name?
+
+[Ram Prasad] 15:12:28
+Yes.
+
+[Ram Prasad] 15:12:31
+Company of Defense, or by company name.
+
+[Animesh Mahato] 15:12:34
+Your company name.
+
+[Ram Prasad] 15:12:36
+My company name, you can write Inverbrush Electrical Private Limited.
+
+[Animesh Mahato] 15:12:40
+Okay, I'll say IPLTD.
+
+[Ram Prasad] 15:12:43
+Uh, yeah, yeah, IBM.
+
+[Animesh Mahato] 15:12:45
+IPL.
+
+[Ram Prasad] 15:12:46
+E-L, E-L.
+
+[Animesh Mahato] 15:12:47
+You.
+
+[Ram Prasad] 15:12:51
+Privately limited.
+
+[Animesh Mahato] 15:12:53
+So, from what I understand is, you have, uh, uh, supply-side relation, and also defense agency-side relation. And, uh, more than anything?
+
+[Ram Prasad] 15:13:02
+No, defense agency, no, group supplier, you can write OEM.
+
+[Animesh Mahato] 15:13:06
+Okay. Oh, yeah. Original manufacturers.
+
+[Ram Prasad] 15:13:10
+Yes.
+
+[Animesh Mahato] 15:13:12
+Now, and this defense agency has mostly government-based trades.
+
+[Ram Prasad] 15:13:15
+Government business.
+
+[Animesh Mahato] 15:13:17
+Government-based. So, between these two, there is a lot of compliance that needs to happen.
+
+[Ram Prasad] 15:13:22
+Correct.
+
+[Animesh Mahato] 15:13:26
+So, first, one of the bottlenecks is maintaining this whole compliance thing between you and the government, and also here, OEM side of it. Because OEM is not compliant, you are automatically not compliant.
+
+[Ram Prasad] 15:13:34
+Yes.
+
+[Ram Prasad] 15:13:34
+Got it.
+
+[Ram Prasad] 15:13:38
+Got it, got it, got it.
+
+[Animesh Mahato] 15:13:40
+And now, after this, both ways you have to maintain the demand and supply, so you have to make sure you are giving proper, uh, orders on time to them, and collecting cash from them on time.
+
+[Ram Prasad] 15:13:54
+Got it.
+
+[Animesh Mahato] 15:13:54
+So, for that, your system should be 2-way optimized. You should be able to see at any time what OEM providers you have, and at any time in what contracts you have to fulfill right now. And kind of like an auto-matching system, that, okay, these are 5 open contracts. These 3 suppliers could help you, uh, you know, clear those contracts, so we can bid for these.
+
+[Ram Prasad] 15:14:14
+Yes.
+
+[Animesh Mahato] 15:14:16
+Okay. So, now, I'll simplify your sales pipeline into phases. First phase, uh…
+
+[Animesh Mahato] 15:14:26
+Query comes in. So, we can keep something like…
+
+[Animesh Mahato] 15:14:31
+And lead phase.
+
+[Animesh Mahato] 15:14:42
+I'll take help of Claude here, Claude of ChatGPT.
+
+[Animesh Mahato] 15:15:06
+So, I need you to help me design a SaaS product for one of my potential clients. He runs a defense contract… he's a defense contract consultant who takes contracts for different.
+
+[Animesh Mahato] 15:15:22
+kind of products, or…
+
+[Animesh Mahato] 15:15:25
+Yeah, products that government agencies need for defense, and he has a lot of OEM providers from where he can fulfill it. So this is his sales pipeline pain points that he mentioned to me on the call. Based on this, can you help me streamline his sales pipeline into simpler steps, and also help guide me on what other questions I can ask him to get more clarity on how I can help him in a better way?
+
+[Animesh Mahato] 15:15:55
+So, everyone, this is how you get deeper into someone's business. You understand them one-on-one, and whatever gaps you have… let's say, for example, right now, the sales pipeline is very complicated. I have probably not worked with this complicated sales pipeline. So, I'll take help of ChatGPT or Claude.
+
+[Animesh Mahato] 15:16:13
+to streamline the sales pipeline into simpler steps, and then I can build a better system for him. So, as you can see right now, it suggested me a structure of opportunity, then supplier sourcing, quotation, government compliance.
+
+[Animesh Mahato] 15:16:29
+Order execution, delivery, payment, and repeat order.
+
+[Animesh Mahato] 15:16:32
+So, this is the simplified way. So now, I pretty much agree on the pipeline, so I'll go to the next step, where it gives me a few more questions to ask him.
+
+[Animesh Mahato] 15:17:00
+Okay.
+
+[Animesh Mahato] 15:17:03
+Yeah, so these are few questions that I can ask to get a better idea on the level of solution I can build. First question is, how many government inquiries do you receive in a month right now?
+
+[Ram Prasad] 15:17:14
+It is maybe 25 to 30.
+
+[Animesh Mahato] 15:17:17
+25 to 30. Okay.
+
+[Ram Prasad] 15:17:18
+Yes.
+
+[Animesh Mahato] 15:17:23
+And, uh, for those, how many you send a quotation right now?
+
+[Ram Prasad] 15:17:27
+Around 20.
+
+[Animesh Mahato] 15:17:29
+20.
+
+[Ram Prasad] 15:17:29
+Because 5 may not be in our range, or may not be, uh, very valuable to us, so we don't quote, we regret that.
+
+[Animesh Mahato] 15:17:36
+Okay. And how many quotations usually become into orders?
+
+[Ram Prasad] 15:17:44
+Uh, 50%, it may be 10, 10 will become water.
+
+[Animesh Mahato] 15:17:48
+And how many active orders do you usually maintain at a time?
+
+[Ram Prasad] 15:17:53
+Maybe around 20 to 25?
+
+[Animesh Mahato] 15:17:56
+20 to 25, okay.
+
+[Ram Prasad] 15:17:57
+Yes, yes.
+
+[Animesh Mahato] 15:18:03
+So, it also gave me a few more questions, which I already know the answer of. So, for example, what software do you open first? He already explained to me that he uses Excel.
+
+[Ram Prasad] 15:18:11
+Exit.
+
+[Animesh Mahato] 15:18:12
+I'm going to ask this question again, and uh…
+
+[Animesh Mahato] 15:18:16
+Where the information is all Excel that is stored.
+
+[Animesh Mahato] 15:18:20
+Hmm, how much time usually your team spend in creating a quotation?
+
+[Ram Prasad] 15:18:26
+3 to 4 days.
+
+[Animesh Mahato] 15:18:28
+3 to 4 days. And, uh, tell me this, is it, uh, more like, uh, 3 to 4 days it takes, because it is genuinely so difficult process to create a quotation, or is just that every time we have to be extremely careful with whatever we are quoting?
+
+[Animesh Mahato] 15:18:44
+That takes 3-4 days.
+
+[Ram Prasad] 15:18:46
+We have to be extremely careful what we are quoting, because our instruction to the team is that we are quoting.
+
+[Ram Prasad] 15:18:56
+Outstanding the quotation is spending so much time. It is just not for participating in the tender. It is for winning the tender. So when you have to win the tender, you have to put a lot of efforts so that we have to ensure that we get the competitor prizes, we get how much.
+
+[Animesh Mahato] 15:19:04
+Hmm.
+
+[Ram Prasad] 15:19:12
+They have purchased last time. What is the best we can do? So it takes 2 to 3 times. And second thing, we also get 7 to 8 days, 10 days time for the quotation, sometimes 30 days time. So we are not under pressure to make the quotation. Only very few cases they ask urgent quotation.
+
+[Ram Prasad] 15:19:29
+So then we have to make it immediate protection. Otherwise, three to four days my team takes to make the protection.
+
+[Animesh Mahato] 15:19:37
+So, it could be optimized with AI, but as you mentioned, it's not a priority for you to optimize this right now, because anyway, quotations or the tenders are not, like, extremely fast, even if you…
+
+[Ram Prasad] 15:19:49
+Correct. It's not that you have to answer today, tomorrow only. So we get times, definitely.
+
+[Animesh Mahato] 15:19:52
+Yes.
+
+[Animesh Mahato] 15:19:56
+So, everyone, this is one important thing. See, here I have an opportunity to use AI to optimize his quotations time from 3-4 days to 3-4 hours, probably. But for him, it's not a priority, so I will maybe focus on this, but later.
+
+[Animesh Mahato] 15:20:09
+Right now, my focus is something else. So, this way, you want to understand which parts, actually, they care about, and this is actual bottlenecks in the business.
+
+[Animesh Mahato] 15:20:19
+How much spend… how much time you spend in communicating with OEMs?
+
+[Ram Prasad] 15:20:25
+Uh, where they got to? OEM.
+
+[Animesh Mahato] 15:20:26
+Yeah, yeah, oh yeah.
+
+[Ram Prasad] 15:20:28
+Uh, with OEM, it takes, uh, 1 week time, 10 days time, sometime.
+
+[Animesh Mahato] 15:20:36
+And, uh…
+
+[Animesh Mahato] 15:20:38
+How much time you spend usually cross-verifying with old information, okay, about certain tenders and stuff?
+
+[Ram Prasad] 15:20:46
+I think every quotation we have to cross-verify, because we don't have the data currently, and it becomes entirely difficult to check up from the Excel every time.
+
+[Ram Prasad] 15:20:56
+So I think we have to verify from the OEM before putting.
+
+[Animesh Mahato] 15:21:12
+Right now, in documentation, how much time it goes for your team?
+
+[Ram Prasad] 15:21:15
+Lot of time.
+
+[Ram Prasad] 15:21:18
+For example, one order has come, and it has around 50 line items.
+
+[Animesh Mahato] 15:21:21
+Hmm.
+
+[Ram Prasad] 15:21:23
+And with the varying quantity, some is 100, some is 50, some is 1,000. And there is a part delivery allowed. So my OEM has shipped sometime 5 number, sometime 10 number. So how many line item he has shipped, what quantity he has shipped.
+
+[Ram Prasad] 15:21:39
+So keeping that record is very painful. So we should know at any point of time that how much we have supplied and how much we need to supply more.
+
+[Animesh Mahato] 15:21:48
+Hmm.
+
+[Ram Prasad] 15:21:48
+So that is the real pain point.
+
+[Animesh Mahato] 15:22:03
+And, uh, in documentation, how much time do you spend usually compliance documentations and stuff?
+
+[Ram Prasad] 15:22:09
+By about one week time, it goes.
+
+[Animesh Mahato] 15:22:15
+And in follow-ups with, let's say, the government or the OEMs, how much time of your team is spent in following up with them?
+
+[Ram Prasad] 15:22:25
+In, uh…
+
+[Animesh Mahato] 15:22:27
+On a, let's say, daily basis.
+
+[Ram Prasad] 15:22:29
+Although the follow-up is the regular follow-up is required for following up for the order, following up for the specification. Because the moment the inquiry comes to us, sometimes they send the inquiry for the new item, they don't attach the specification or they don't attach the drawing.
+
+[Ram Prasad] 15:22:46
+or a drawing is… old drawing they have attached, the part number is different, so for that, we have to follow up. Then, after giving the quotation, we have to follow up for the order. After getting the order, we have to supply, then we have to follow up for the approval, acceptance of the supply.
+
+[Ram Prasad] 15:23:03
+Then we have to follow up for the payment. So a lot of time goes into these follow-ups.
+
+[Animesh Mahato] 15:23:08
+So, I would say daily, 3-4 hours of your team, definitely.
+
+[Ram Prasad] 15:23:10
+Yes, ghosts, definitely.
+
+[Animesh Mahato] 15:23:13
+All right.
+
+[Animesh Mahato] 15:23:15
+So, there are a few more questions, but I would not go too much in these questions, because I got the overall feel on where I can optimize. But you can, of course, go with more and more depth. So now, this is the whole context that I have put.
+
+[Animesh Mahato] 15:23:29
+So, I would say, uh, to ChatGPT, with this context, to create a PRD for me. For PRD, again, anyone tell me where can you get the PRD from?
+
+[Animesh Mahato] 15:23:40
+Of course, you can do this in kilocode also, I'm just doing it in ChatGPT for now, but you can do it in kilocode.
+
+[Animesh Mahato] 15:23:48
+Okay. So now, yes, the Hackathon dashboard in your…
+
+[Animesh Mahato] 15:23:55
+resources, you'll find a PRD document.
+
+[Animesh Mahato] 15:23:57
+So, I'll find the PRD prompt.
+
+[Animesh Mahato] 15:24:00
+This is the PRD prompt I have copied.
+
+[Animesh Mahato] 15:24:04
+And I'll simply first say, so based on the above answers, I want you to create me a PRD by following the below instructions.
+
+[Animesh Mahato] 15:24:18
+Copy it again.
+
+[Animesh Mahato] 15:24:40
+So, as you can see, this is the PRD that have been drafted, and this is the solution that ChatGPT is coming up with right now. So…
+
+[Animesh Mahato] 15:24:51
+The contradiction… there are some contradictions, also, that I can clarify. The stated idea is that the interview discussed with the different business offer joining. Okay, one second.
+
+[Animesh Mahato] 15:25:01
+Okay, I think offered a joining follow-up would… okay.
+
+[Animesh Mahato] 15:25:05
+I think I pasted the wrong prompt. Let me just edit it and simply say.
+
+[Animesh Mahato] 15:25:14
+I'll use this prompt of the PRD that I created.
+
+[Animesh Mahato] 15:25:23
+That prompt in the dashboard is my personalized prompt, that's why it was…
+
+[Animesh Mahato] 15:25:27
+Coming like this, but this is the actual prompt.
+
+[Animesh Mahato] 15:25:30
+Uh, it will be there in your dashboard also, I'll show you where to get it.
+
+[Animesh Mahato] 15:25:59
+Also, there are some important things we also discussed, that you would likely want it to be as much offline as possible. Less exposure to the world. So…
+
+[Ram Prasad] 15:26:07
+Yes.
+
+[Ram Prasad] 15:26:09
+Because of the secrecy reason.
+
+[Animesh Mahato] 15:26:11
+Yeah. So, everyone… so, because he's into defense background, he needs to be hyper-compliant. So, what I suggested is…
+
+[Animesh Mahato] 15:26:19
+For the initial build part, initial build part only, we will use things like SuperBase and all.
+
+[Animesh Mahato] 15:26:26
+to build online. Later, once the system is built, we can set up a peer-to-peer system. Um, I'm not sure how many of you would have used torrent. Uh, torrent is basically… it's… people use it for piracy, but the main idea behind torrent was not to pirate anything.
+
+[Animesh Mahato] 15:26:42
+Torrent was designed so people can host files on their computer like a server. So let's say I have one version of his app in my computer. You open the same version, we both apps can connect and can communicate with each other without going to the internet.
+
+[Animesh Mahato] 15:26:59
+So this was a method we can do, it's called peer-to-peer interaction. So that, uh, we'll do in Phase 2, whoever is gonna build this finally. First, you build it in a normal way only. Once the normal way is built, you just convert it into a peer-to-peer system, so least.
+
+[Animesh Mahato] 15:27:16
+amount of data is being exposed to the internet, so that he… or in the second trick could be, we'll get him a small server, which he owns. That's where we can also host it. So these are two directions when we go in advance. Right now, I don't need to worry about it, I just wanted to give you this context.
+
+[Animesh Mahato] 15:27:34
+Because he's from different background, how would we think about a project like this?
+
+[Animesh Mahato] 15:27:39
+So, the PRD is ready. As you can see, this is the details about the client, and what they said, and everything. These are all the discussions that we had.
+
+[Animesh Mahato] 15:27:50
+Now, I'll show you the solution.
+
+[Animesh Mahato] 15:28:18
+Okay, there are a lot of questions it asked, so…
+
+[Animesh Mahato] 15:28:23
+Let me go to the solution… product outcome.
+
+[Animesh Mahato] 15:28:26
+So the product outcome is a government requirement should move through the business without the team having to reconstruct in history. That means right now, every time an order comes in his business, it's reconstructed from scratch. But from the new system, it should automatically pick it up.
+
+[Animesh Mahato] 15:28:42
+And to search multiple spreadsheets, manually remember follow-ups, all this should not happen. That is the current problem.
+
+[Animesh Mahato] 15:28:49
+So…
+
+[Animesh Mahato] 15:28:50
+this is the solution we have designed for, and the PRD is designed around that solution, and there are a few questions that have been asked. So, because there are a lot of questions, what usually, if you have a one-on-one client discussion, I would want you to ask these questions to the client.
+
+[Animesh Mahato] 15:29:06
+because we don't have so much time to do 3-4 hour discovery call, usually we'll have that much discovery call, I will create a constrained version of it, where I would say.
+
+[Animesh Mahato] 15:29:15
+I want you to constrain the number of questions, and assume obvious answers for the ones which are repetitive in nature, and then give me a list of 5 to 10 questions which I can give you clarity on, to create a final PRD, and uh…
+
+[Animesh Mahato] 15:29:30
+Uh, we can go ahead with the next steps of the project.
+
+[Animesh Mahato] 15:29:43
+So, I'll answer these questions one by one.
+
+[Animesh Mahato] 15:29:46
+What does it mean to… by maintaining supply quantity mean? So, by maintaining supply quantity, it simply means, because we have OEM providers who can supply in different quantities, we should make sure that the quantity we are promising in the tender, and the OEM is able to fulfill if he's fulfilling a partial amount.
+
+[Animesh Mahato] 15:30:05
+we should make sure to get multiple shipments or multiple OEMs to complete the full requirement.
+
+[Animesh Mahato] 15:30:17
+So, right now, I have a list of OEMs, which I can probably upload in the systems once it is ready to decide which OEM gets which requirement.
+
+[Animesh Mahato] 15:30:31
+So, when it comes to the OEM information, I'll provide you some sheets also that I'm currently using in my business to get better understanding on how I'm maintaining the data.
+
+[Animesh Mahato] 15:30:43
+When preparing a quotation, the previous data that I maintain is previously how much we have quoted for this, if we have won or lost the contract, if we have won, then what price, if we have lost, then what price, and based on that, we adjust the bid.
+
+[Animesh Mahato] 15:31:00
+So, for the actual documentation, I'll give you the context after some time. Right now, you can take the major documentation from your research, whatever is needed for this kind of.
+
+[Animesh Mahato] 15:31:11
+Tenders.
+
+[Animesh Mahato] 15:31:14
+The people who will be using this is the owner and his team. It could include salespeople, also the operation and finance people.
+
+[Animesh Mahato] 15:31:26
+Every day in the morning, he should be able to see how many orders are in the pipeline, and what is the status of each order.
+
+[Animesh Mahato] 15:31:36
+So, what would make it feel like this software is worth paying is, if we can simply, in natural language, ask the system, okay, how many orders is there, what… how many contracts we have got this month, what contracts we have lost, and why did we lose it? Maybe we can do a small LLM request.
+
+[Animesh Mahato] 15:31:54
+with these kind of questions to get these answers. So that's it, and do you need any more clarification from me?
+
+[Animesh Mahato] 15:32:02
+So I'm answering on his behalf, because I have some context with the calls I already have with him. Usually, when you get a new client project, you should do this, uh, with them for maybe 2-3 hours of meeting to understand the business in depth.
+
+[Animesh Mahato] 15:32:19
+Also, uh, you have provided me a sheet. I'll upload that sheet also, so that it gets even more context.
+
+[Animesh Mahato] 15:32:45
+Here's the sheet the client has provided me with some data and some structures of the data that he's using. Utilize this to the full extent and fill as many gaps as possible.
+
+[Animesh Mahato] 15:33:05
+Yeah, everyone, I'll share you the sheet also, no need to worry. The sheet and whatever PRD I'm able to get, but do not go off this with my PRD, you create your own version, otherwise everyone's build would be the same. Whatever I'm doing right now is the exercise you should do. I'm just showing you an example on how you should go about doing it.
+
+[Animesh Mahato] 15:33:34
+How many of you are enjoying this exercise? I know this is more like a real, very practical implementation.
+
+[Animesh Mahato] 15:33:42
+But yeah, how many of you are enjoying this exercise? Just type me in the chat box. Because, yeah, this is a little… can look boring on the surface kind of a thing, but this is the main business part of it.
+
+[Animesh Mahato] 15:33:51
+Where you get deeper and deeper and deeper into the real problem, and you solve it.
+
+[Animesh Mahato] 15:33:55
+Amazing.
+
+[Animesh Mahato] 15:34:02
+So I will give you this asset that I created in the back there. It already shared with everyone, but I'll share it with you one more time. It has all the steps that you should follow in sequence, where you can create a PRD now, then create a tech stack, then implementation plan, and how to limit the scope.
+
+[Animesh Mahato] 15:34:18
+And assemble everything, verify and deploy. All that is here. You can be utilizing this to build the actual project.
+
+[Animesh Mahato] 15:35:12
+Alright, so my PRD is finally ready.
+
+[Animesh Mahato] 15:35:19
+This PRD, as you can see, includes all the communications we had, uh, with the client, and what they said and everything, with the real numbers and stuff.
+
+[Animesh Mahato] 15:35:29
+Now, this is the problem statement ranked by Business Card. So, according to ChatGPT, it's saying the biggest problem statement is, uh, the business can promise quality, it cannot fulfill.
+
+[Animesh Mahato] 15:35:39
+Why is that? This most consequential operational issue. The client receives a government requirement for a quantity and must construct a fulfillment plan using OEM capacity. The system must be able to show which OEMs are there and how much they can basically commit.
+
+[Animesh Mahato] 15:35:55
+Like this, it is giving example statements and stuff. So this is explaining which problems we are trying to solve.
+
+[Animesh Mahato] 15:36:03
+And based on that, this is the whole requirement.
+
+[Animesh Mahato] 15:36:06
+Now…
+
+[Animesh Mahato] 15:36:10
+This is, uh, assumptions that we have made, the quotations we have done, and other requirements, which what… and what things we are not doing right now. We are not going in the legal direction right now, because these are his industry experience things. We can always take his, uh, help to build these things in Phase 2.
+
+[Animesh Mahato] 15:36:27
+But for Phase 1, we have to give him a UI UX in a way that he can operate his business without much headache.
+
+[Animesh Mahato] 15:36:35
+And this is the core product requirement. So…
+
+[Animesh Mahato] 15:36:40
+customer master. It should… at any point in time, he should be able to see what is the customer name, division, subdivision.
+
+[Animesh Mahato] 15:36:46
+if there are multiple contacts for that person, all these details, the OEM master, so now he should be able to manage his OEMs also in a similar fashion.
+
+[Animesh Mahato] 15:36:57
+And then, we have the products or parts master, where all the products he's supplying or he's doing are also mentioned here.
+
+[Animesh Mahato] 15:37:07
+Then tender inquiry requirements, whatever requirements comes. These are, like, different dimensions to the same product, explained in detail, and quotation requirements and everything. So, this is pretty thorough. I will give you this document, of course, but…
+
+[Animesh Mahato] 15:37:21
+How many of you got the idea of creating the PRD? I'll walk you through the other steps also, on a general basis.
+
+[Animesh Mahato] 15:37:29
+But this is the whole idea of creating the PRD.
+
+[Animesh Mahato] 15:37:33
+Usually, I will build it with you, but today I want to give a challenge, so I want you to build it yourself. I'll explain you what to do after this.
+
+[Animesh Mahato] 15:37:40
+So, first step, as we always know, you got the PRD, right? After the PRD is done, you should build your tech stack.
+
+[Animesh Mahato] 15:37:49
+Okay? Tech stack simply means what technologies will we be using in the first place? Will we use SuperBase? Will we use what exactly?
+
+[Animesh Mahato] 15:37:58
+Then, after tech stack is done, you should create your implementation plan.
+
+[Animesh Mahato] 15:38:04
+Simply meaning, what are the steps AI must follow to build his dashboard in the first place? It could be as simple as creating the HTML document, to adding the data, to making sure the upload option is there. So PRD tech stack implementation plan.
+
+[Animesh Mahato] 15:38:21
+After this is done, we will start building the whole thing.
+
+[Animesh Mahato] 15:38:25
+So, you will just simply ask AI to build the thing using these documents that are there. So, these three becomes a stack to build here. So, I'll just, in the brackets, I'll put PRD plus…
+
+[Animesh Mahato] 15:38:38
+TS plus IP. So, using these three documents, you will build it. So, till here, how many of you are clear? This is the part which is, like, 80-90% of your job is completing these three documents, so that you can start doing the build.
+
+[Animesh Mahato] 15:38:54
+Okay. Now, once the build is complete, the important part here becomes…
+
+[Animesh Mahato] 15:39:01
+the…
+
+[Animesh Mahato] 15:39:03
+QA. You can consider the QA process, where now you will test the build.
+
+[Animesh Mahato] 15:39:09
+You will see the build is working or not. Is it working on phone? Is it not working on phone? Is it working on desktop properly? Can I upload a wrong document and still it works or not? All these things you will do, which is testing after your build is complete.
+
+[Animesh Mahato] 15:39:23
+Once the testing is done.
+
+[Animesh Mahato] 15:39:25
+Can anyone tell me what is the next step?
+
+[Animesh Mahato] 15:39:32
+Execution, okay. But execution, you have already done, you have built it. But now, it's in your computer.
+
+[Animesh Mahato] 15:39:39
+You have to submit it. So what should you do next?
+
+[Animesh Mahato] 15:39:49
+Let me see… yes, deployment.
+
+[Animesh Mahato] 15:39:52
+So, the idea here is, I, let's say, build this product, but I need to get it graded also, so I need to deploy it on a public website, or a public link.
+
+[Animesh Mahato] 15:40:01
+So, finally, after your testing is done, whatever improvements you will do, you'll do the improvements.
+
+[Animesh Mahato] 15:40:06
+After improvements are complete, we finally do the deployment.
+
+[Animesh Mahato] 15:40:12
+Or, usually, I wanna keep it like a step, because this is a loop. You do testing, you do improvements, you keep doing this until you're satisfied.
+
+[Animesh Mahato] 15:40:21
+Once you're satisfied.
+
+[Animesh Mahato] 15:40:24
+you will deploy.
+
+[Animesh Mahato] 15:40:25
+Can anyone tell me, uh, what should we use to deploy this completely for free?
+
+[Animesh Mahato] 15:40:36
+Vercel, yes. Vercel with one more thing we might need for this, because this is a database thing.
+
+[Animesh Mahato] 15:40:44
+Which is…
+
+[Animesh Mahato] 15:40:47
+Versal, and…
+
+[Animesh Mahato] 15:40:49
+Superbase. Correct. So, why Vercel and Superbase? I'll explain you. So, also, Superbase is an optional step right now. I'm just explaining you why also.
+
+[Animesh Mahato] 15:41:00
+When you deploy, you can completely deploy free for Vercel and Superbase. Now, if your application is more simple, Vercel is more than enough, no need for Superbase. However, his application requires to store a lot of data and manage a lot of data.
+
+[Animesh Mahato] 15:41:16
+So, that's why we also combine Superbase. Now, Superbase is also completely free for two projects you can use. I'm giving you one more option, just in case you want to try something new, but if you've never used, then don't go. Neon is something that I've been using lately.
+
+[Animesh Mahato] 15:41:33
+for my projects, and it's amazing. Uh, the Hackathon dashboard that you're running is built on Neon.
+
+[Animesh Mahato] 15:41:40
+So it is a new tech I have found out. And the best part with this is it's auto scaling. So in the night when no one uses it, it doesn't cost us anything. And in the morning when everyone uses it, it increases the server automatically. So we are able to accommodate as many people as there.
+
+[Animesh Mahato] 15:41:56
+However, you don't need to use Neon. If you want to use Neon, you can use it, but Superbase is the safest option.
+
+[Animesh Mahato] 15:42:02
+So this is the whole idea of creating the PRD and getting the tech stack implementation plan and everything. I will give you this main document in your resources is anywhere there, but maybe someone can get confused because there is a lot of things.
+
+[Animesh Mahato] 15:42:17
+AI agents and everything is there. For this specific project, which is a vibe coding project.
+
+[Animesh Mahato] 15:42:23
+I will give you this, uh, toolkit, where I explained about how to build a working CRM only, for a different person last time when we built, with all these steps. So I'll give this to you, just save it with you, we'll also, uh, share in the groups.
+
+[Animesh Mahato] 15:42:38
+But this is how you should do it, okay? So, what you have to do is, I'll explain you also how to…
+
+[Animesh Mahato] 15:42:47
+upload in the dashboard. Around 7 or 8 PM, we'll open level 4, and it will be a little different looking. It will be just simply saying, build for real business owners. You open this, and here, the name of Ram Prasad would be here, and his requirement will be also there.
+
+[Animesh Mahato] 15:43:04
+like, uh, CRM for defense contractor, and his company name and his name would be there. You just select there, and you attach the link of the app.
+
+[Animesh Mahato] 15:43:14
+I will also give an opportunity to maybe add some screenshots, but mostly, you should have a working link of your application, so we can open, use the application, and give you feedback, and make sure there is no password on it.
+
+[Animesh Mahato] 15:43:29
+Because if there is password, we cannot use the app. I'll also add a section where you can add notes, if there is something we should know before testing the app. I'll add the notes tab also. But here, you should be able to add the build link.
+
+[Animesh Mahato] 15:43:45
+And also, there's some notes. Everyone clear how to do submissions? Just had clear in the chat box. I'll walk you through again. You come to the home page, go to milestones, come to level 4.
+
+[Animesh Mahato] 15:43:56
+Inside of level 4, you will have only one option, which is Build for Real Business Owners. You will select the project of building a CRM for Ram Prasad, and after selecting it, you paste your link, let's say I give this link, and click on Submit. We will give you two to three times to upload.
+
+[Animesh Mahato] 15:44:14
+Max to Max, by tomorrow 9am, or tomorrow 8am or 9am. After that, we will announce a couple of people, or the top people, whoever is there, and they can show their product.
+
+[Animesh Mahato] 15:44:29
+And it's up to Ram Prasad to decide who gets the project. Is everyone clear about this? I'll also share a video recording, maybe in the group after some time, where we are able to.
+
+[Animesh Mahato] 15:44:41
+I'll show you how to upload this.
+
+[Animesh Mahato] 15:44:43
+Okay.
+
+[Animesh Mahato] 15:44:45
+Perfect. Uh, so, uh, anything else, Ramsal, if you think I'm missing on right now, or do you think it pretty much sums out your requirement as of now?
+
+[Ram Prasad] 15:44:54
+No, it sounds very well. I think it is… you have covered all the point. Only thing, if my… on my dashboard, if I can get that… how many inquiry pending to make the quotation, how many order pending, how much payment is pending to be collected.
+
+[Ram Prasad] 15:45:09
+We have that also coming to dashboard. That will be appreciable.
+
+[Animesh Mahato] 15:45:13
+Alright, everyone take notes. Here is some ways to stand out tomorrow. Now, it's your own innovation. What else that we did not discuss today you can add in the app that could blow his mind? It's all up to you. You can build an AI avatar in the app who can just talk to him or do something.
+
+[Animesh Mahato] 15:45:29
+all up to your creativity. Perfect, thank you so much, uh, Ram Prasad, for coming and sharing this requirement. It's a very interesting requirement, everyone will get a nice, uh, way to build something, all thanks to you. And, uh, yeah, we'll see if there is another business owner will take them.
+
+[Animesh Mahato] 15:45:44
+Before that, I'll answer a few questions. Okay?
+
+[Ram Prasad] 15:45:47
+Thank you. Thank you very much, Animesh. And thanks, everybody.
+
+[Animesh Mahato] 15:45:51
+Thank you.
+
+[Animesh Mahato] 15:45:55
+So, let me take a few questions, I'll take a few people, answer their questions, then we'll go to the next business only.
+
+[Animesh Mahato] 15:46:03
+Yes, Gunal, you can unmute yourself.
+
+[Animesh Mahato] 15:46:10
+I think you're muted. Sent you the request.
+
+[Animesh Mahato] 15:46:17
+Yes, I think you're unmuted. Yes, I can hear.
+
+[Ghulam Sarwar] 15:46:18
+Hello?
+
+[Ghulam Sarwar] 15:46:19
+Yes. Hi, Animesh. Hi, Animesh. Hi, everyone. And thank you for giving this opportunity.
+
+[Ghulam Sarwar] 15:46:27
+Although I understand this all project very well, because it's my regular routine day-to-day work.
+
+[Animesh Mahato] 15:46:33
+Okay.
+
+[Ram Prasad] 15:46:34
+Very good.
+
+[Ghulam Sarwar] 15:46:34
+And I'm building the similar products on the ERP platform.
+
+[Ghulam Sarwar] 15:46:38
+So, just a couple of questions only. Do you need to maintain the manufacturing, something like that, facility as well, or no?
+
+[Ram Prasad] 15:46:41
+Yes.
+
+[Ram Prasad] 15:46:47
+We need to be. We need.
+
+[Ghulam Sarwar] 15:46:49
+Okay.
+
+[Ghulam Sarwar] 15:46:51
+Okay.
+
+[Ghulam Sarwar] 15:46:53
+Fine. And, uh, subcontracting management and their onboarding as well?
+
+[Ram Prasad] 15:46:59
+Yes.
+
+[Ghulam Sarwar] 15:47:00
+Okay. Do we have, uh, some sort of criteria to, uh…
+
+[Ghulam Sarwar] 15:47:06
+Onboard subcontractors, or third parties.
+
+[Ram Prasad] 15:47:07
+Yeah, they should be defense qualified.
+
+[Ghulam Sarwar] 15:47:10
+Okay.
+
+[Ghulam Sarwar] 15:47:12
+And, uh, do we have some products specific to certain subcontractors, or OEM?
+
+[Ram Prasad] 15:47:17
+Yes, we have a lot of product. One is, if you want to know, we have an enclosure to be made. We need to have cables. We need to have a cable assembly, cable harness.
+
+[Ram Prasad] 15:47:33
+We need to have some PCB designing. We need to design some PCB. We need to manufacture some PCB. So these are all subcontractor work.
+
+[Ghulam Sarwar] 15:47:42
+Okay, okay, okay, fine. So, do we have any specific product for a specific OEM?
+
+[Ghulam Sarwar] 15:47:51
+Any party-specific item?
+
+[Ram Prasad] 15:47:53
+Yeah, one… OEM has only one product, because I'm advisor, I…
+
+[Ghulam Sarwar] 15:47:56
+Okay.
+
+[Ram Prasad] 15:47:58
+This is ethical, it's not ethical if for the one product I represent two people.
+
+[Ram Prasad] 15:48:03
+then it will be a competition within this, I will be sharing the information of each other. So, one OEM, I will select for the one product, and another OEM, which is not competing with the previous OEM.
+
+[Ghulam Sarwar] 15:48:16
+Right, right. Thank you very much for the clarification, actually. My question, my point's over. And, uh, thank you, thank you. Animesh, I need just your support. I cannot see level 4, actually. So, from my dashboard, yes.
+
+[Ram Prasad] 15:48:20
+My pleasure.
+
+[Ram Prasad] 15:48:22
+Thank you, buddy.
+
+[Ram Prasad] 15:48:25
+You're looking…
+
+[Animesh Mahato] 15:48:27
+Can you show me your screen? Level 4 should be locked for everybody right now, but show me one.
+
+[Ghulam Sarwar] 15:48:32
+Okay, then it's okay. Then it's okay. If level 4 is locked for everyone, it's okay then.
+
+[Animesh Mahato] 15:48:34
+Okay.
+
+[Animesh Mahato] 15:48:38
+Yeah, it'll open in the night, and uh… around 7 or 8 PM IST, and then you can start uploading.
+
+[Ghulam Sarwar] 15:48:46
+Okay, thank you very much. Thank you very much. My questions are over.
+
+[Animesh Mahato] 15:48:50
+Perfect, thank you.
+
+[Ghulam Sarwar] 15:48:51
+Thank you. Thank you so much.
+
+[Animesh Mahato] 15:48:53
+Vinthi, you can unmute yourself.
+
+[Vinti] 15:48:57
+Thank you so much, Animesh, and good evening to everyone. So I have just 2 queries. First thing is, you are going to upload the problem statement right exactly in that. And my request is, if you can upload that question answers also.
+
+[Animesh Mahato] 15:49:12
+Yeah, yeah, upload question answers, plus the notes and everything, the discussion we had. Only thing I don't want to upload is the PRD, because that…
+
+[Vinti] 15:49:12
+Because…
+
+[Vinti] 15:49:16
+Exactly.
+
+[Vinti] 15:49:19
+That's fine, that's perfectly fine, because when we are going to do again, it will ask some questions, so we just require the answers for that. So that… and for Vercel, you are going to give us the database, uh, for Supabase. You are providing us the Excel. That has to be used as a database in the Supabase, that, uh.
+
+[Vinti] 15:49:36
+table we need to create.
+
+[Animesh Mahato] 15:49:38
+Yeah, so the Excel sheet that we will give you is like a template. Now you can utilize that in Supabase to create tables, structures, and stuff.
+
+[Animesh Mahato] 15:49:47
+That doesn't mean that you…
+
+[Vinti] 15:49:47
+No, it's the…
+
+[Ram Prasad] 15:49:48
+Abhinesh, Abhinesh, I can give you the template within one, uh, half an hour for all the inquiry, quotation, pending orders, pending payment, what I am maintaining. So, I'll give this blank template, they can use that.
+
+[Animesh Mahato] 15:50:01
+Alright, that would be perfect.
+
+[Vinti] 15:50:03
+So, there will be, uh, different templates, and we have to create the tables from the template, right, for the database.
+
+[Ram Prasad] 15:50:08
+Yes.
+
+[Animesh Mahato] 15:50:09
+Yeah, you can utilize those as a base. If you do any updates on that, you can always feel free to do any improvements.
+
+[Ram Prasad] 15:50:11
+Base, base information.
+
+[Animesh Mahato] 15:50:19
+Alright, perfect.
+
+[Vinti] 15:50:20
+Thank you so much.
+
+[Animesh Mahato] 15:50:22
+Thank you, Venti.
+
+[Ram Prasad] 15:50:22
+Thank you. Thank you, Indian.
+
+[Animesh Mahato] 15:50:26
+Let me add Shankar Narayan. You can unmute yourself.
+
+[Shankarnarayan S] 15:50:35
+Hi, Animesh. Namaste. What I want to ask you — what I want to ask you is this is specifically a tender, I guess.
+
+[Animesh Mahato] 15:50:36
+Oh, yeah.
+
+[Ram Prasad] 15:50:38
+Namaste, San Marte.
+
+[Shankarnarayan S] 15:50:44
+So, do you also track tenders which you… with a specific site or something, like newspapers, or there is a specific website where these tenders are published?
+
+[Ram Prasad] 15:50:54
+Yes, yes, we tendered this all.
+
+[Shankarnarayan S] 15:50:55
+So you keep a track of it also, whether you have participated in all those tenders or you have missed out, your team has missed out. Do you keep a check on that as well?
+
+[Ram Prasad] 15:51:03
+Yeah, yeah, we keep the check on that because we use the different website. Like each buyer is having his own ePortal. Then we have a general GEM portal. We have a sales GEM portal. There are few more GEM portals.
+
+[Shankarnarayan S] 15:51:09
+Great.
+
+[Shankarnarayan S] 15:51:12
+Okay.
+
+[Shankarnarayan S] 15:51:15
+Thank you.
+
+[Shankarnarayan S] 15:51:17
+Right.
+
+[Ram Prasad] 15:51:19
+Which we track for the new inquiries, new tenders.
+
+[Shankarnarayan S] 15:51:22
+Okay, and when you're submitting the tenders, there will be a certain set of documents which you will need to be joining it along with the submission as such. So, do you keep a control… yeah, as per the tender requirement, so do you keep a track of all those documents, whether it was.
+
+[Ram Prasad] 15:51:31
+Yes, yes, as per the tender requirement. Yeah, yeah.
+
+[Shankarnarayan S] 15:51:38
+copied inside the tender, or whether it was attached with the tender and then submitted. Because if you miss out one paper also, you could lose a tender.
+
+[Ram Prasad] 15:51:42
+Yes, yes, we keep the record.
+
+[Ram Prasad] 15:51:45
+Yeah, you will disqualified.
+
+[Ram Prasad] 15:51:48
+So that is why we have a two level of testing. The person, one, he is manufacturing complete tender. He go through, there is a checklist. So he check all these things. And when order come, then also order review checklist. So everything we check on that.
+
+[Shankarnarayan S] 15:51:48
+Right. So is that.
+
+[Shankarnarayan S] 15:51:52
+Right.
+
+[Ram Prasad] 15:52:03
+So we don't miss out.
+
+[Shankarnarayan S] 15:52:06
+Right, sir. Got the detail. Thank you. Thank you.
+
+[Ram Prasad] 15:52:06
+Thank you. Thank you. Thank you. Thank you.
+
+[Animesh Mahato] 15:52:10
+Alright, perfect.
