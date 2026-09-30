@@ -1,0 +1,9 @@
+node_modules
+.next
+.git
+next-env.d.ts
+package-lock.json
+playwright-report
+test-results
+supabase
+*.md
