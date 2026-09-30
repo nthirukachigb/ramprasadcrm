@@ -28,7 +28,7 @@ business modules**.
   and the audit log
 - Shared foundations for later phases: `get-user`/`requireRole`, `EmptyState`,
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
-- Unit tests (Vitest) and one Playwright smoke test
+- Unit tests (Vitest) and one Playwright smoke test 
 
 ---
 
