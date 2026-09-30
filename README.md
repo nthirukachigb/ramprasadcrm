@@ -30,6 +30,29 @@ business modules**.
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
 - Unit tests (Vitest) and one Playwright smoke test
 
+## What Phase 2 delivers (requirement / RFI)
+
+- **Requirement header**: RFI, RFQ, enquiry, tender, repeat and budgetary
+  records with auto-numbered references (`RQ/26-27/0001`), source channel,
+  customer reference, deadline (with a "TBC" flag), assignment and a
+  controlled status (Received → Qualifying → In preparation → Quoted →
+  Submitted → Won / Partially won / Lost / Not pursued / Cancelled / Closed).
+- **Up to 500 line items** on one requirement, with a fast grid, spreadsheet
+  paste, per-row validation, duplicate-part warnings and product matching by
+  part number. The 501st line is blocked by the database (`FR-RFI-02`).
+- **Qualification** (pursue or pass). A pass needs a structured reason and an
+  **Owner approval** before it becomes "Not pursued".
+- **Tender checklist** per requirement, seeded from editable templates, with a
+  progress bar and waiver requests that need Owner approval.
+- **Document vault basics**: private buckets, upload allow-list (macro-enabled
+  and executable files rejected), short-lived signed downloads and an access
+  log. Files are honestly labelled "unscanned" until a scanner is added.
+- **Clarifications** for missing specs and drawings, with overdue highlighting.
+- **One auditable timeline** per requirement (status, documents, approvals and
+  clarifications) and **dashboard tiles D-01, D-02 and D-03** whose counts
+  equal their drill-down lists. Tiles that are not built show "—", never a
+  false zero.
+
 ## What Phase 1 delivers (master data)
 
 - **Customers**: organisations with divisions, typed locations, multiple
@@ -95,7 +118,8 @@ Recorded from the versions installed at build time.
      `supabase db push` (uses `supabase/migrations/*.sql`, in order).
    - **SQL Editor:** run `supabase/APPLY_MANUALLY.sql`
      (`0001_foundation.sql`) first, then `supabase/APPLY_MANUALLY_PHASE1.sql`
-     (`0002_masters.sql`).
+     (`0002_masters.sql`), then `supabase/APPLY_MANUALLY_PHASE2.sql`
+     (`0003`–`0008`, the requirement/RFI phase).
 
    All scripts are idempotent and can be run again safely.
 
@@ -117,10 +141,25 @@ Recorded from the versions installed at build time.
    3 customers, 2 partners (one OEM with three locations) and 4 products with
    part numbers, an expired approval certificate and pricing history.
 
+5b. **Seed synthetic requirements** (synthetic only)
+
+   ```bash
+   npm run seed:requirements
+   ```
+
+   Three requirements (received, in preparation, quoted) with line items, a
+   seeded checklist and one clarification.
+
 6. **Verify the Phase 1 acceptance criteria** against the live project
 
    ```bash
    npm run verify:phase1
+   ```
+
+6b. **Verify the Phase 2 acceptance criteria** against the live project
+
+   ```bash
+   npm run verify:phase2
    ```
 
 7. **Run the app**
@@ -162,7 +201,9 @@ Never prefix a server-only variable with `NEXT_PUBLIC_`.
 | `npm run test:e2e` | Playwright smoke test |
 | `npm run seed:users` | Seed/update demo users |
 | `npm run seed:masters` | Seed/update synthetic master data (Phase 1) |
+| `npm run seed:requirements` | Seed/update synthetic requirements (Phase 2) |
 | `npm run verify:phase1` | Verify Phase 1 acceptance criteria against the live project |
+| `npm run verify:phase2` | Verify Phase 2 acceptance criteria against the live project |
 | `npm run format` | Prettier |
 
 ### End-to-end tests
@@ -210,11 +251,17 @@ src/
   app/
     (auth)/login/          # email + password and one-click demo access
     (app)/                 # authenticated shell: dashboard + module placeholders
+      requirements/        # real: requirement/RFI list, create, detail (Phase 2)
+        [id]/lines         # real: up to 500-line grid (Phase 2)
+        [id]/qualify       # real: accept / pass with Owner approval (Phase 2)
+        [id]/timeline      # real: one auditable timeline (Phase 2)
+      approvals/           # real: human approval inbox (Phase 2)
       customers/[id]/      # real: customer master (Phase 1)
       oems/[id]/           # real: partner master (Phase 1)
       products/[id]/       # real: product master (Phase 1)
       admin/users/         # real: users and roles
       admin/audit/         # real: audit log
+    api/files/[id]/url/    # real: RLS-checked signed download (Phase 2)
     layout.tsx  page.tsx  not-found.tsx
   components/
     ui/                    # shadcn/ui primitives
@@ -225,16 +272,22 @@ src/
   lib/
     auth/                  # get-user, requireRole, pure role helpers, actions
     supabase/              # server / client / admin clients
-    schemas/               # Zod schemas (auth, admin, masters)
+    schemas/               # Zod schemas (auth, admin, masters, requirement)
     masters/               # master-data server actions and status helpers
+    requirements/          # requirement status/labels, paste parser, write check
+    actions/               # requirement, lines, approvals, checklist, documents
+    platform/storage.ts    # upload allow-list and signed-URL TTL (Phase 2)
     crypto.ts              # field encryption (server-only usage)
     env.ts  format.ts  utils.ts
   proxy.ts                 # session refresh + auth redirect (Next 16 proxy)
 supabase/
   migrations/0001_foundation.sql  0002_masters.sql
-  APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql
+                 0003_requirements.sql 0004_documents.sql 0005_checklist.sql
+                 0006_clarification.sql 0007_timeline.sql 0008_tiles.sql
+  APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql  APPLY_MANUALLY_PHASE2.sql
   config.toml
-scripts/seed-demo-users.ts  seed-demo-masters.ts  verify-phase1.ts
+scripts/seed-demo-users.ts  seed-demo-masters.ts  seed-demo-requirements.ts
+         verify-phase1.ts  verify-phase2.ts
 tests/unit/  tests/e2e/
 docs/                      # PRD, TECH-STACK, IMPLEMENTATION-PLAN (source of truth)
 ```

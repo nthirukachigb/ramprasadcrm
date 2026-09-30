@@ -7,6 +7,7 @@ import {
   BadgeIndianRupee,
   Boxes,
   Building2,
+  ClipboardCheck,
   ClipboardList,
   FileText,
   FolderOpen,
@@ -63,6 +64,7 @@ const FINANCE_ROLES: AppRole[] = ["owner", "finance", "admin"];
 export const NAV_ITEMS: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Requirements", href: "/requirements", icon: ClipboardList },
+  { label: "Approvals", href: "/approvals", icon: ClipboardCheck },
   { label: "OEM Sourcing", href: "/oem-sourcing", icon: Send },
   { label: "Quotations", href: "/quotations", icon: FileText },
   { label: "Orders", href: "/orders", icon: PackageCheck },
