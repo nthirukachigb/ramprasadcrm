@@ -111,6 +111,18 @@ export async function decideApproval(input: {
     revalidatePath("/dashboard");
   }
 
+  // Quotation version approved from the inbox: lock the version (T5.3).
+  if (approval.subject_type === "quotation_version" && input.decision === "approved") {
+    const { error: quoteError } = await supabase.rpc("approve_quotation_version", {
+      p_version_id: approval.subject_id,
+      p_comment: input.comment,
+    });
+    if (quoteError) {
+      return { ok: false, error: friendlyError(quoteError.message, quoteError.code) };
+    }
+    revalidatePath(`/quotations/${approval.subject_id}`);
+  }
+
 
 
 

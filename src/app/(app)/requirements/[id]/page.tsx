@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ExternalLink, Factory, Gauge, History, ListChecks, PenLine } from "lucide-react";
+import { ExternalLink, Factory, FileText, Gauge, History, ListChecks, PenLine } from "lucide-react";
 
 import { ChecklistPanel, type ChecklistRow } from "@/components/checklist/ChecklistPanel.client";
 import {
@@ -261,6 +261,13 @@ export default async function RequirementDetailPage({
               <Link href={`/requirements/${id}/coverage`}>
                 <Gauge className="size-4" aria-hidden="true" />
                 Quantity coverage
+                <ExternalLink className="ml-auto size-4" aria-hidden="true" />
+              </Link>
+            </Button>
+            <Button asChild variant="outline" className="justify-start">
+              <Link href={`/requirements/${id}/quotations`}>
+                <FileText className="size-4" aria-hidden="true" />
+                Quotations
                 <ExternalLink className="ml-auto size-4" aria-hidden="true" />
               </Link>
             </Button>

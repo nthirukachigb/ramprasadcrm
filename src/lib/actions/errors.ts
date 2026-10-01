@@ -15,6 +15,21 @@ export function friendlyError(message: string, code?: string): string {
   if (message.includes("BR-17")) {
     return "This approval has already been decided and cannot be changed.";
   }
+  if (message.includes("QUOTE_GATE")) {
+    return message.replace(/^.*QUOTE_GATE:\s*/, "");
+  }
+  if (message.includes("BR-19")) {
+    return "This quotation version is locked once approved; create a revision instead.";
+  }
+  if (message.includes("BR-01")) {
+    return "The quotation line must belong to the requirement's own lines.";
+  }
+  if (message.includes("FR-QUOTE-07")) {
+    return "A late submission needs a reason.";
+  }
+  if (message.includes("COMMITMENT_VERSION_REQUIRED")) {
+    return "Change the commitment through Change, which creates a new version.";
+  }
   if (message.includes("DOCUMENT_LINK_TARGET_MISSING")) {
     return "The document cannot be linked to that record.";
   }

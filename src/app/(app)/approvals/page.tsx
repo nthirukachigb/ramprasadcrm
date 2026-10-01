@@ -122,6 +122,13 @@ export default async function ApprovalsPage() {
                   >
                     Open coverage
                   </Link>
+                ) : row.subject_type === "quotation_version" ? (
+                  <Link
+                    href={`/quotations/${row.subject_id}`}
+                    className="text-primary text-xs underline-offset-4 hover:underline"
+                  >
+                    Open quotation
+                  </Link>
                 ) : (
                   <p className="text-muted-foreground text-xs">{row.subject_id}</p>
                 )}

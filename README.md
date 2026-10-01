@@ -30,6 +30,28 @@ business modules**.
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
 - Unit tests (Vitest) and one Playwright smoke test
 
+## What Phase 5 delivers (quotations, versions, approval)
+
+- **Quotation schema** tied to a requirement, with `QT/…` numbering and
+  **immutable versions** once they leave Draft (`BR-19`). Lines must belong to
+  the quotation's own requirement (`BR-01`).
+- **Quote builder** (`/quotations/[versionId]`): per-line OEM cost, freight,
+  other cost, target margin and proposed price with a live landed-cost / margin
+  preview (`lib/calc/pricing.ts`, mirrored by SQL in `v_quotation_totals`);
+  terms, FX and compliance declarations; tax lines; JSON suggestions you copy
+  in with **Apply**.
+- **Approval gate** (`FR-QUOTE-06`, `FR-QTY-04`, `FR-RFI-05`, `FR-SOURCE-05`):
+  a version cannot be submitted or approved while there is uncovered quantity
+  without an override, an open mandatory checklist item, a missing price or
+  sourcing basis, an unapproved OEM selection, or a missing OEM cost. Owner-only
+  approval locks the version, snapshots totals and makes it current.
+- **Revisions** copy lines into a new draft; earlier prices stay retrievable.
+- **Bid history** (`v_bid_history`, margin-gated `v_bid_history_with_margin`,
+  `comparable_history`) with a per-line **History** panel; viewing is logged.
+- **Submission record** with a required reason for late submissions.
+- **Margin confidentiality**: Operations read `v_quotation_line_ops` and the
+  margin views return zero rows for them.
+
 ## What Phase 4 delivers (quantity coverage)
 
 - **Coverage calculated in the database** by `v_requirement_line_coverage` —
@@ -154,7 +176,8 @@ Recorded from the versions installed at build time.
      (`0002_masters.sql`), then `supabase/APPLY_MANUALLY_PHASE2.sql`
      (`0003`–`0008`, the requirement/RFI phase), then
      `supabase/APPLY_MANUALLY_PHASE3.sql` (`0009`, OEM sourcing), then
-     `supabase/APPLY_MANUALLY_PHASE4.sql` (`0010`–`0012`, quantity coverage).
+     `supabase/APPLY_MANUALLY_PHASE4.sql` (`0010`–`0012`, quantity coverage),
+     then `supabase/APPLY_MANUALLY_PHASE5.sql` (`0013`–`0015`, quotations).
 
    All scripts are idempotent and can be run again safely.
 
@@ -210,6 +233,13 @@ Recorded from the versions installed at build time.
    npm run verify:phase4
    ```
 
+6e. **Verify Phase 5 quotations** against the live project
+
+   ```bash
+   npm run verify:phase5
+   npm run verify:phase5-flow
+   ```
+
 7. **Run the app**
 
    ```bash
@@ -255,6 +285,8 @@ Never prefix a server-only variable with `NEXT_PUBLIC_`.
 | `npm run verify:phase3` | Verify the Phase 3 sourcing schema against the live project |
 | `npm run verify:phase3-flow` | Walk the Phase 3 sourcing flow end to end against the live project |
 | `npm run verify:phase4` | Verify the Phase 4 coverage view, override and tile D-08 |
+| `npm run verify:phase5` | Verify the Phase 5 quotation schema and immutability |
+| `npm run verify:phase5-flow` | Walk the Phase 5 quotation workflow end to end |
 | `npm run format` | Prettier |
 
 ### End-to-end tests
@@ -306,6 +338,9 @@ src/
         [id]/lines         # real: up to 500-line grid (Phase 2)
         [id]/qualify       # real: accept / pass with Owner approval (Phase 2)
         [id]/timeline      # real: one auditable timeline (Phase 2)
+        [id]/coverage      # real: quantity coverage + override (Phase 4)
+        [id]/quotations    # real: quotation versions for a requirement (Phase 5)
+      quotations/          # real: quotation list + version builder (Phase 5)
       approvals/           # real: human approval inbox (Phase 2)
       customers/[id]/      # real: customer master (Phase 1)
       oems/[id]/           # real: partner master (Phase 1)
@@ -337,12 +372,15 @@ supabase/
                  0006_clarification.sql 0007_timeline.sql 0008_tiles.sql
                  0009_sourcing.sql
                  0010_coverage.sql 0011_coverage_override.sql 0012_tile_d08.sql
+                 0013_quotation.sql 0014_quotation_workflow.sql 0015_bid_history.sql
   APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql  APPLY_MANUALLY_PHASE2.sql
                       APPLY_MANUALLY_PHASE3.sql  APPLY_MANUALLY_PHASE4.sql
+                      APPLY_MANUALLY_PHASE5.sql
   config.toml
 scripts/seed-demo-users.ts  seed-demo-masters.ts  seed-demo-requirements.ts
          verify-phase1.ts  verify-phase2.ts  verify-phase3.ts
-         verify-phase3-flow.ts  verify-phase4.ts
+         verify-phase3-flow.ts  verify-phase4.ts  verify-phase5.ts
+         verify-phase5-flow.ts
 tests/unit/  tests/e2e/
 docs/                      # PRD, TECH-STACK, IMPLEMENTATION-PLAN (source of truth)
 ```
