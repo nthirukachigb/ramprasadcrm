@@ -16,8 +16,9 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { requireUser } from "@/lib/auth/get-user";
-import { createClient } from "@/lib/supabase/server";
 import { formatDate } from "@/lib/format";
+import { normalizeSearchQuery } from "@/lib/search";
+import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Search" };
 
@@ -69,14 +70,15 @@ export default async function SearchPage({
   await requireUser();
   const params = await searchParams;
   const q = params.q?.trim() ?? "";
+  const searchQuery = normalizeSearchQuery(q);
   const supabase = await createClient();
   let rows: SearchRow[] = [];
   let suggestions: { title: string; entity_type: string; entity_id: string }[] = [];
   let failed: string | null = null;
 
-  if (q) {
+  if (searchQuery) {
     const { data, error } = await supabase.rpc("search", {
-      p_q: q,
+      p_q: searchQuery,
       p_filters: { entity_type: params.entity_type ?? "", status: params.status ?? "" },
       p_limit: 100,
       p_cursor: null,
@@ -85,7 +87,7 @@ export default async function SearchPage({
     rows = (data ?? []) as SearchRow[];
     if (!rows.length) {
       const { data: suggestionRows } = await supabase.rpc("search_suggestions", {
-        p_q: q,
+        p_q: searchQuery,
         p_limit: 5,
       });
       suggestions = (suggestionRows ?? []) as typeof suggestions;

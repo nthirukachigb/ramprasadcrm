@@ -194,37 +194,39 @@ security invoker
 set search_path = public, app
 as $$
 with input as (
-  select btrim(coalesce(p_q, '')) as q,
-         public.search_part_key(p_q) as part_key,
-         coalesce(nullif(p_filters->>'entity_type', ''), null) as entity_filter,
-         coalesce(nullif(p_filters->>'status', ''), null) as status_filter,
-         coalesce(nullif(p_filters->>'from', '')::date, null) as from_date,
-         coalesce(nullif(p_filters->>'to', '')::date, null) as to_date
+  select
+    btrim(coalesce(p_q, '')) as q_raw,
+    regexp_replace(lower(btrim(coalesce(p_q, ''))), '[^a-z0-9]+', ' ', 'g') as q_norm,
+    public.search_part_key(p_q) as part_key,
+    coalesce(nullif(p_filters->>'entity_type', ''), null) as entity_filter,
+    coalesce(nullif(p_filters->>'status', ''), null) as status_filter,
+    nullif(p_filters->>'from', '')::date as from_date,
+    nullif(p_filters->>'to', '')::date as to_date
 ), scored as (
   select sd.*,
     case
-      when lower(input.q) = any(array(select lower(x) from unnest(sd.ref_codes) x)) then 'exact'
+      when lower(input.q_raw) = any(array(select lower(x) from unnest(sd.ref_codes) x)) then 'exact'
       when input.part_key is not null and input.part_key = any(sd.part_nos_norm) then 'exact'
       when input.part_key is not null and exists (select 1 from unnest(sd.part_nos_norm) x where x like input.part_key || '%') then 'prefix'
-      when input.q <> '' and sd.search_text ilike '%' || input.q || '%' then 'text'
+      when input.q_raw <> '' and sd.search_text ilike '%' || input.q_raw || '%' then 'text'
       else 'similar'
     end as match_kind,
     (case when input.part_key is not null and input.part_key = any(sd.part_nos_norm) then 10 else 0 end
-      + case when input.q <> '' and sd.search_text ilike '%' || input.q || '%' then 4 else 0 end
-      + ts_rank(sd.body, websearch_to_tsquery('simple', input.q))
-      + similarity(sd.title, input.q) * 0.25)::real as result_rank
+      + case when input.q_raw <> '' and sd.search_text ilike '%' || input.q_raw || '%' then 4 else 0 end
+      + case when input.q_norm <> '' then ts_rank(sd.body, websearch_to_tsquery('simple', input.q_norm)) else 0 end
+      + similarity(sd.title, input.q_raw) * 0.25)::real as result_rank
   from public.search_document sd cross join input
-  where input.q <> ''
+  where input.q_raw <> ''
     and (input.entity_filter is null or sd.entity_type = input.entity_filter)
     and (input.status_filter is null or sd.status = input.status_filter)
     and (input.from_date is null or sd.event_date::date >= input.from_date)
     and (input.to_date is null or sd.event_date::date <= input.to_date)
     and (p_cursor is null or sd.event_date < p_cursor)
     and (
-      sd.body @@ websearch_to_tsquery('simple', input.q)
-      or sd.search_text ilike '%' || input.q || '%'
+      (input.q_norm <> '' and sd.body @@ websearch_to_tsquery('simple', input.q_norm))
+      or sd.search_text ilike '%' || input.q_raw || '%'
       or (input.part_key is not null and exists (select 1 from unnest(sd.part_nos_norm) x where x % input.part_key))
-      or sd.title % input.q
+      or sd.title % input.q_raw
     )
 )
 select entity_type, entity_id, title, ref_codes, status, event_date, match_kind, result_rank, customer_id, partner_id
