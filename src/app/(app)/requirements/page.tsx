@@ -53,6 +53,17 @@ export default async function RequirementsPage({
   const user = await getCurrentUser();
   const supabase = await createClient();
 
+  // D-08 drill-down: only requirements that have an uncovered line.
+  let d08Ids: string[] = [];
+  if (params.tile === "d08") {
+    const { data: gapRows } = await supabase
+      .from("v_tile_d08")
+      .select("requirement_id");
+    d08Ids = Array.from(
+      new Set((gapRows ?? []).map((row) => row.requirement_id as string)),
+    );
+  }
+
   let query = supabase
     .from("requirement")
     .select(
@@ -66,6 +77,11 @@ export default async function RequirementsPage({
     query = query.in("status", ["received", "qualifying"]);
   } else if (params.tile === "d02") {
     query = query.eq("status", "in_preparation");
+  } else if (params.tile === "d08") {
+    query = query.in(
+      "id",
+      d08Ids.length ? d08Ids : ["00000000-0000-0000-0000-000000000000"],
+    );
   } else if (params.tile === "d03") {
     const soon = new Date();
     soon.setDate(soon.getDate() + 7);

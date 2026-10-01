@@ -62,6 +62,22 @@ export default async function ApprovalsPage() {
     ]),
   );
 
+  const overrideIds = rows
+    .filter((row) => row.subject_type === "coverage_override")
+    .map((row) => row.subject_id);
+  const { data: overrides } = overrideIds.length
+    ? await supabase
+        .from("coverage_override")
+        .select("id, requirement_line:requirement_line_id(requirement_id)")
+    : { data: [] };
+  const overrideRequirementById = new Map(
+    (overrides ?? []).map((row) => [
+      row.id as string,
+      (row.requirement_line as unknown as { requirement_id: string } | null)
+        ?.requirement_id as string,
+    ]),
+  );
+
   return (
     <div className="space-y-6">
       <PageHeader
@@ -97,6 +113,14 @@ export default async function ApprovalsPage() {
                     className="text-primary text-xs underline-offset-4 hover:underline"
                   >
                     Open sourcing
+                  </Link>
+                ) : row.subject_type === "coverage_override" &&
+                  overrideRequirementById.get(row.subject_id) ? (
+                  <Link
+                    href={`/requirements/${overrideRequirementById.get(row.subject_id)}/coverage`}
+                    className="text-primary text-xs underline-offset-4 hover:underline"
+                  >
+                    Open coverage
                   </Link>
                 ) : (
                   <p className="text-muted-foreground text-xs">{row.subject_id}</p>

@@ -13,7 +13,6 @@ interface Kpi {
   count_value: number;
   as_of: string;
 }
-
 const PLANNED = [
   { code: "D-04", label: "Quotes awaiting response", phase: 5 },
   { code: "D-05", label: "Open orders by status", phase: 7 },
@@ -66,6 +65,14 @@ export default async function DashboardPage() {
           definition="Requirements with a submission deadline within 7 days."
           href="/requirements?tile=d03"
           asOf={byCode.get("D-03")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-08"
+          label="Requirement lines with a coverage gap"
+          count={count("D-08")}
+          definition="Lines with uncovered quantity and no approved override."
+          href="/requirements?tile=d08"
+          asOf={byCode.get("D-08")?.as_of ?? asOf}
         />
         {PLANNED.map((tile) => (
           <PlannedTile

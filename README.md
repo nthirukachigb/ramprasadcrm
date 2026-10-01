@@ -30,6 +30,22 @@ business modules**.
   `ErrorState`, `PageHeader`, `StatusBadge`, `DataTableShell`, and `format.ts`
 - Unit tests (Vitest) and one Playwright smoke test
 
+## What Phase 4 delivers (quantity coverage)
+
+- **Coverage calculated in the database** by `v_requirement_line_coverage` —
+  the single source every screen, tile and export reads. Firm coverage counts
+  only **active, in-validity firm commitments**; availability indications are
+  shown but never counted.
+- **Per-line strip** (`<QtyStrip>`): required / committed / available (hatched,
+  informational) / uncovered, with the status written in words as well as
+  colour. A summary `<CoverageBar>` shows the requirement total.
+- **Coverage override** (`FR-QTY-05`): request an Owner-approved exception from
+  a red line; the view then reports `has_approved_override`, the line is marked
+  “Committed with override”, and the override appears in the audit log. It is
+  auto-resolved once new commitments close the gap.
+- **Dashboard tile D-08** (“requirement lines with a coverage gap”) whose count
+  equals its drill-down list.
+
 ## What Phase 3 delivers (OEM sourcing)
 
 - **Partner shortlist**: read-only suggestions per line (from the OEM/product
@@ -137,7 +153,8 @@ Recorded from the versions installed at build time.
      (`0001_foundation.sql`) first, then `supabase/APPLY_MANUALLY_PHASE1.sql`
      (`0002_masters.sql`), then `supabase/APPLY_MANUALLY_PHASE2.sql`
      (`0003`–`0008`, the requirement/RFI phase), then
-     `supabase/APPLY_MANUALLY_PHASE3.sql` (`0009`, OEM sourcing).
+     `supabase/APPLY_MANUALLY_PHASE3.sql` (`0009`, OEM sourcing), then
+     `supabase/APPLY_MANUALLY_PHASE4.sql` (`0010`–`0012`, quantity coverage).
 
    All scripts are idempotent and can be run again safely.
 
@@ -184,6 +201,13 @@ Recorded from the versions installed at build time.
 
    ```bash
    npm run verify:phase3
+   npm run verify:phase3-flow
+   ```
+
+6d. **Verify the Phase 4 coverage view and override** against the live project
+
+   ```bash
+   npm run verify:phase4
    ```
 
 7. **Run the app**
@@ -229,6 +253,8 @@ Never prefix a server-only variable with `NEXT_PUBLIC_`.
 | `npm run verify:phase1` | Verify Phase 1 acceptance criteria against the live project |
 | `npm run verify:phase2` | Verify Phase 2 acceptance criteria against the live project |
 | `npm run verify:phase3` | Verify the Phase 3 sourcing schema against the live project |
+| `npm run verify:phase3-flow` | Walk the Phase 3 sourcing flow end to end against the live project |
+| `npm run verify:phase4` | Verify the Phase 4 coverage view, override and tile D-08 |
 | `npm run format` | Prettier |
 
 ### End-to-end tests
@@ -310,11 +336,13 @@ supabase/
                  0003_requirements.sql 0004_documents.sql 0005_checklist.sql
                  0006_clarification.sql 0007_timeline.sql 0008_tiles.sql
                  0009_sourcing.sql
+                 0010_coverage.sql 0011_coverage_override.sql 0012_tile_d08.sql
   APPLY_MANUALLY.sql  APPLY_MANUALLY_PHASE1.sql  APPLY_MANUALLY_PHASE2.sql
-                      APPLY_MANUALLY_PHASE3.sql
+                      APPLY_MANUALLY_PHASE3.sql  APPLY_MANUALLY_PHASE4.sql
   config.toml
 scripts/seed-demo-users.ts  seed-demo-masters.ts  seed-demo-requirements.ts
          verify-phase1.ts  verify-phase2.ts  verify-phase3.ts
+         verify-phase3-flow.ts  verify-phase4.ts
 tests/unit/  tests/e2e/
 docs/                      # PRD, TECH-STACK, IMPLEMENTATION-PLAN (source of truth)
 ```

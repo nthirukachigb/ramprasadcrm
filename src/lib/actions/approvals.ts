@@ -98,6 +98,20 @@ export async function decideApproval(input: {
     }
   }
 
+  // Coverage override: approval lets the gap be accepted (T4.2).
+  if (approval.subject_type === "coverage_override") {
+    const nextStatus = input.decision === "approved" ? "approved" : "rejected";
+    const { error: overrideError } = await supabase
+      .from("coverage_override")
+      .update({ status: nextStatus })
+      .eq("id", approval.subject_id);
+    if (overrideError) {
+      return { ok: false, error: "Could not update the coverage override." };
+    }
+    revalidatePath("/dashboard");
+  }
+
+
 
 
   revalidatePath("/approvals");
