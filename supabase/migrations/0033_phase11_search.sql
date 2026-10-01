@@ -71,7 +71,7 @@ declare
 begin
   select coalesce(array_agg(distinct public.search_part_key(x) order by public.search_part_key(x)) filter (where public.search_part_key(x) is not null), '{}')
     into v_parts
-  from unnest(coalesce(p_part_nos, '{}')) as values(x);
+  from unnest(coalesce(p_part_nos, '{}')) as part_value(x);
 
   insert into public.search_document (
     entity_type, entity_id, title, ref_codes, part_nos_norm, body, search_text,
