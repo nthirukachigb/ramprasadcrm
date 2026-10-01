@@ -41,9 +41,23 @@ export async function proxy(request: NextRequest) {
     },
   });
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+  let user = null;
+  try {
+    const {
+      data: { user: authUser },
+      error,
+    } = await supabase.auth.getUser();
+    if (error) {
+      console.warn("Supabase auth refresh failed in proxy; continuing without session.", error.message);
+    } else {
+      user = authUser;
+    }
+  } catch (error) {
+    console.warn(
+      "Supabase auth refresh is unavailable in proxy; continuing without session.",
+      error,
+    );
+  }
 
   const path = request.nextUrl.pathname;
   const isPublicRoute = path === "/login" || path.startsWith("/auth");

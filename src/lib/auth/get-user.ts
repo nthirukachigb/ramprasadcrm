@@ -18,28 +18,42 @@ export {
 
 /** Returns the signed-in user with their roles, or null when signed out. */
 export async function getCurrentUser(): Promise<CurrentUser | null> {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  if (!user) return null;
+  try {
+    const supabase = await createClient();
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
 
-  const { data: roleRows } = await supabase
-    .from("user_roles")
-    .select("role")
-    .eq("user_id", user.id);
+    if (error) {
+      console.warn("Supabase auth lookup failed; treating session as signed out.", error.message);
+      return null;
+    }
+    if (!user) return null;
 
-  const roles = (roleRows ?? []).map((row) => row.role as AppRole);
+    const { data: roleRows } = await supabase
+      .from("user_roles")
+      .select("role")
+      .eq("user_id", user.id);
 
-  return {
-    id: user.id,
-    email: user.email ?? null,
-    fullName:
-      (user.user_metadata?.full_name as string | undefined) ??
-      user.email ??
-      null,
-    roles,
-  };
+    const roles = (roleRows ?? []).map((row) => row.role as AppRole);
+
+    return {
+      id: user.id,
+      email: user.email ?? null,
+      fullName:
+        (user.user_metadata?.full_name as string | undefined) ??
+        user.email ??
+        null,
+      roles,
+    };
+  } catch (error) {
+    console.warn(
+      "Supabase auth is unavailable; treating the user as signed out.",
+      error,
+    );
+    return null;
+  }
 }
 
 /** Redirects to /login when signed out. */
