@@ -23,6 +23,7 @@
     "verify:phase5-flow": "tsx scripts/verify-phase5-flow.ts",
     "verify:phase6": "tsx scripts/verify-phase6.ts",
     "verify:phase7": "tsx scripts/verify-phase7.ts",
+    "verify:phase8": "tsx scripts/verify-phase8.ts",
     "format": "prettier --write ."
   },
   "dependencies": {

@@ -15,7 +15,7 @@ interface Kpi {
 }
 const PLANNED = [
   { code: "D-04", label: "Quotes awaiting response", phase: 12 },
-  { code: "D-06", label: "Orders at delivery risk", phase: 8 },
+  { code: "D-07", label: "OEM responses pending", phase: 3 },
   { code: "D-14", label: "Payments due", phase: 9 },
   { code: "D-18", label: "Documents nearing expiry", phase: 10 },
 ];
@@ -80,6 +80,54 @@ export default async function DashboardPage() {
           definition="Customer POs received and not completed or cancelled."
           href="/orders"
           asOf={byCode.get("D-05")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-06"
+          label="Orders at delivery risk"
+          count={count("D-06")}
+          definition="Distinct POs with a schedule at risk or late."
+          href="/orders"
+          asOf={byCode.get("D-06")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-09"
+          label="Material readiness issues"
+          count={count("D-09")}
+          definition="PO lines with an overdue milestone or a forecast after the committed date."
+          href="/orders"
+          asOf={byCode.get("D-09")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-10"
+          label="PDI pending"
+          count={count("D-10")}
+          definition="PDI calls that are called or in progress."
+          href="/orders"
+          asOf={byCode.get("D-10")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-11"
+          label="PDI blocked"
+          count={count("D-11")}
+          definition="PDI lines with held or rejected quantity."
+          href="/orders"
+          asOf={byCode.get("D-11")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-12"
+          label="Partial deliveries"
+          count={count("D-12")}
+          definition="PO lines with 0 < accepted < ordered."
+          href="/orders"
+          asOf={byCode.get("D-12")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-13"
+          label="Outstanding quantities"
+          count={count("D-13")}
+          definition="PO lines with a remaining ordered-minus-accepted quantity."
+          href="/orders"
+          asOf={byCode.get("D-13")?.as_of ?? asOf}
         />
         {PLANNED.map((tile) => (
           <PlannedTile

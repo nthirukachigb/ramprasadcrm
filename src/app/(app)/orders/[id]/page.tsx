@@ -141,6 +141,14 @@ export default async function OrderPage({
       <PageHeader
         title={poRaw.internal_ref ?? poRaw.customer_po_number}
         description="Review variances, schedule deliveries, record amendments and raise supplier POs."
+        actions={
+          <Link
+            href={`/orders/${id}/fulfilment`}
+            className="border-input bg-background hover:bg-accent inline-flex h-9 items-center rounded-md border px-3 text-sm font-medium"
+          >
+            Fulfilment
+          </Link>
+        }
       />
       <PoWorkspace
         po={{
