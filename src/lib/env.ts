@@ -27,6 +27,22 @@ const serverEnvSchema = z.object({
     .transform((value) => value === "true"),
   DEMO_USER_PASSWORD: z.string().min(6).optional(),
   FIELD_ENCRYPTION_KEY: z.string().min(1).optional(),
+  AI_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
+  AI_PHRASING_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
+  AI_DEMO_ENABLED: z
+    .enum(["true", "false"])
+    .default("false")
+    .transform((value) => value === "true"),
+  AI_PROVIDER: z.string().optional(),
+  AI_MODEL: z.string().optional(),
+  AI_API_BASE_URL: z.string().optional(),
+  AI_API_KEY: z.string().optional(),
 });
 
 export type PublicEnv = z.infer<typeof publicEnvSchema>;
@@ -61,6 +77,13 @@ export function getServerEnv(): ServerEnv {
     DEMO_MODE: process.env.DEMO_MODE,
     DEMO_USER_PASSWORD: process.env.DEMO_USER_PASSWORD,
     FIELD_ENCRYPTION_KEY: process.env.FIELD_ENCRYPTION_KEY,
+    AI_ENABLED: process.env.AI_ENABLED,
+    AI_PHRASING_ENABLED: process.env.AI_PHRASING_ENABLED,
+    AI_DEMO_ENABLED: process.env.AI_DEMO_ENABLED,
+    AI_PROVIDER: process.env.AI_PROVIDER,
+    AI_MODEL: process.env.AI_MODEL,
+    AI_API_BASE_URL: process.env.AI_API_BASE_URL,
+    AI_API_KEY: process.env.AI_API_KEY,
   });
   if (!parsed.success) {
     throw new Error(formatEnvError(parsed.error, "server"));

@@ -59,7 +59,7 @@ The deliverable is a **public demo link** that opens with **one-click role sign-
 - **Deploy from Phase 0.** Every later phase is checked on the live demo URL.
 - **Database first.** Business rules, balances and gates live in Postgres (TECH-STACK P3, P10). Screens only display them.
 - **Human approvals are real database gates.** They are never UI-only and never faked.
-- **Test → fix → retest** loop on every task. A task is done only when its verification passes locally **and** on the deployed URL.
+- **Test → fix → retest** loop on every task. A task is done only when its verification passes in the hosted Supabase validation project **and** on the deployed URL.
 
 ### 2.3 Number of phases
 
@@ -110,16 +110,18 @@ Based on TECH-STACK.md §4, §16–§18. **Record exact tool versions in `docs/V
 - [ ] Supabase: project `rlch-demo`. Region chosen. Free-tier pausing and limits checked **[Verify at build]**. The `rlch-prod` project is **not** created until Q-T1/Q-T3 are answered.
 - [ ] Password manager vault for secrets. **Never** store secrets in the repo, chat or tickets.
 
-**Local tools**
+**Required tools and services**
 - [ ] Node.js (active LTS) and a package manager (npm or pnpm — pick one and pin it in `packageManager`)
-- [ ] Docker (for `supabase start`)
 - [ ] Supabase CLI
+- [ ] A dedicated hosted Supabase validation project (`rlch-ci`) with a separate database password and service credentials. This project is disposable and contains synthetic data only.
+- [ ] `psql` (or an approved remote SQL runner) for executing pgTAP files against the validation project
 - [ ] Git, plus a secret scanner (gitleaks or similar) as a pre-commit hook
 - [ ] Playwright browsers (`npx playwright install`)
 - [ ] sqlfluff (Postgres dialect) for SQL linting
 
 **Repository**
 - [ ] `PRD.md`, `TECH-STACK.md` and `IMPLEMENTATION-PLAN.md` committed in `/docs`
+- [ ] `docs/DB-VALIDATION.md` documents the hosted validation reset, migration push, seed, pgTAP runner and cleanup workflow
 - [ ] `.gitignore` includes `.env*.local`, `supabase/.temp`, `playwright-report`, `test-results`
 - [ ] `.env.example` with **names only** (list below)
 
@@ -131,6 +133,7 @@ Based on TECH-STACK.md §4, §16–§18. **Record exact tool versions in `docs/V
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | – | T0.5 |
 | `SUPABASE_SERVICE_ROLE_KEY` | **S** | T0.7 |
 | `SUPABASE_PROJECT_REF`, `SUPABASE_ACCESS_TOKEN`, `SUPABASE_DB_PASSWORD` | **S** (CI) | T0.8 |
+| `SUPABASE_VALIDATION_DB_URL` | **S** (CI) | T0.8; TLS-enabled connection string for the hosted pgTAP runner |
 | `APP_ENV` | S | T0.5 |
 | `DEMO_MODE` | S | T0.7 |
 | `DEMO_USER_PASSWORDS_JSON` | **S** | T0.7 |
@@ -145,10 +148,12 @@ Based on TECH-STACK.md §4, §16–§18. **Record exact tool versions in `docs/V
 | `SMOKE_BASE_URL` | S (CI) | T0.9 |
 | `SENTRY_DSN` | **S** | Not used unless the owner approves (Q-T12) |
 
-**Local database**
-- [ ] `supabase init` → `supabase start` runs locally
-- [ ] `supabase db reset` applies all migrations and the synthetic seed with no errors
-- [ ] `supabase test db` runs pgTAP
+**Hosted database validation**
+- [ ] `supabase link --project-ref <validation-ref>` points the CLI at the hosted validation project
+- [ ] `supabase db push` applies all migrations to the validation project with no errors
+- [ ] The synthetic seed loads through the validation project connection
+- [ ] `psql` (or the approved remote SQL runner) executes every `supabase/tests/*.test.sql` file with pgTAP enabled
+- [ ] The validation project can be reset by applying the documented cleanup/seed workflow; never use production or the public demo project for destructive tests
 
 **Deployment accounts ready**
 - [ ] Vercel env vars set for Production (demo) and Preview. Server-only variables marked *Sensitive*.
@@ -193,7 +198,7 @@ Use the structure in TECH-STACK §6.1 exactly (`app/(app)/…`, `components/{dat
 ### 4.5 Code review and self-check (before opening a PR)
 
 - [ ] Task acceptance criteria met and demonstrated
-- [ ] `npm run lint && npm run typecheck && npm run test && supabase test db` all green
+- [ ] `npm run lint && npm run typecheck && npm run test` plus the hosted pgTAP runner are all green
 - [ ] New tables: RLS enabled, policies for all 5 roles, pgTAP RLS test added
 - [ ] New writes: audit trigger attached. Status changes go through `app.transition`.
 - [ ] Human-approval gates are enforced in the DB, not only in the UI
@@ -205,10 +210,10 @@ Use the structure in TECH-STACK §6.1 exactly (`app/(app)/…`, `components/{dat
 ### 4.6 How the AI coding agent verifies each task
 
 1. Read the task in §6, plus the cited PRD FR IDs and TECH-STACK sections.
-2. Write the migration and the pgTAP tests **first**. Run `supabase db reset && supabase test db`.
+2. Write the migration and the pgTAP tests **first**. Push the migration to the hosted validation project and run the remote pgTAP test runner.
 3. Implement server actions, then UI.
 4. Run unit tests, then Playwright for the touched flow at the desktop and phone viewports.
-5. Run the **Verification steps** listed on the task, locally.
+5. Run the **Verification steps** listed on the task against the hosted validation project and, where applicable, the local Next.js app.
 6. Push the branch → Vercel preview → repeat the verification on the preview URL.
 7. Merge → re-verify on the demo URL. Tick the task in §15.
 8. **If any check fails: fix → rerun all the task's checks → only then continue.** Do not start the next task with a red check.
@@ -311,7 +316,7 @@ flowchart LR
 - **Steps:**
   1. Create the app (App Router, TS, Tailwind).
   2. Initialise shadcn/ui and add button, input, table, dialog, badge, tabs, toast, skeleton.
-  3. Add npm scripts: `lint`, `typecheck`, `test`, `test:e2e`, `db:reset`, `db:test`, `db:types`.
+  3. Add npm scripts: `lint`, `typecheck`, `test`, `test:e2e`, `db:push`, `db:test:remote`, `db:types`.
   4. Install decimal.js, date-fns, date-fns-tz, zod, react-hook-form, @tanstack/react-table, @tanstack/react-virtual, recharts.
   5. Record the exact versions in `docs/VERSIONS.md`.
 - **UI states:** n/a
@@ -337,13 +342,13 @@ flowchart LR
 - **Steps:**
   1. Write the migration.
   2. Write pgTAP tests for `next_ref` uniqueness under concurrency (two sessions), the role helpers, and reference data presence.
-  3. Run `supabase db reset && supabase test db`.
+  3. Push the migration to the hosted validation project and run the remote pgTAP test runner.
 - **UI states:** n/a
 - **Acceptance:**
   - Two concurrent `next_ref('RQ','26-27')` calls return different values (FR-RFI-03 AC).
   - Anon reads zero rows from every table.
 - **Tests:** pgTAP (numbering, helpers, RLS).
-- **Verify:** Local: `supabase test db` green.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Migration merged. Tests green.
 
 #### T0.3 · Audit, status history and transition framework — Must · M
@@ -370,7 +375,7 @@ flowchart LR
   - Nobody can update or delete `audit_event`.
   - An invalid transition is rejected.
 - **Tests:** pgTAP.
-- **Verify:** Local: `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Framework reusable. Documented in `docs/ADR-001-audit.md`.
 
 #### T0.4 · Approval framework — Must · M
@@ -470,21 +475,21 @@ flowchart LR
 - **Goal:** Every PR is checked automatically.
 - **PRD:** NFR-18, NFR-24 · **Tech:** GitHub Actions, Supabase CLI, pgTAP, Playwright, gitleaks, Dependabot
 - **Depends on:** T0.2, T0.5
-- **Files:** `.github/workflows/ci.yml`, `.github/workflows/migrate-demo.yml`, `.github/dependabot.yml`, `scripts/check-rls.sql`, `scripts/check-client-bundle.mjs`
+- **Files:** `.github/workflows/ci.yml`, `.github/workflows/migrate-demo.yml`, `.github/dependabot.yml`, `scripts/check-rls.sql`, `scripts/check-client-bundle.mjs`, `scripts/run-db-tests.mjs`, `docs/DB-VALIDATION.md`
 - **DB:** The `check-rls.sql` assertion: zero tables without RLS in `public/audit/staging/ref`, and no policy granting `anon`.
 - **Steps:** The CI job runs, in order:
   1. install
   2. lint
   3. typecheck
   4. unit tests
-  5. `supabase start` → `db reset` → `test db` → the RLS assertion
+  5. Apply migrations to the hosted validation project with `supabase db push` → load the synthetic seed → run `scripts/run-db-tests.mjs` against `SUPABASE_VALIDATION_DB_URL` → run the RLS assertion through the same hosted connection
   6. type-drift check (`db:types` then `git diff --exit-code`)
   7. build
   8. client-bundle scan for server-only variable names
   9. secret scan
   10. dependency audit
 
-  `migrate-demo.yml` runs on merge to `main` and pushes migrations to the demo project.
+  `migrate-demo.yml` runs on merge to `main` and pushes migrations to the demo project. CI uses the hosted validation project for all database checks and never starts a local Supabase stack.
 - **UI states:** n/a
 - **Acceptance:** A PR with a table lacking RLS fails CI. A PR leaking `SUPABASE_SERVICE_ROLE_KEY` into the client fails CI.
 - **Tests:** Two deliberate failing branches prove the gates, then get deleted.
@@ -529,7 +534,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** A duplicate customer name (different case or spacing) is rejected. `portal_reference` has no password column (schema test). A tax number is stored as ciphertext.
 - **Tests:** pgTAP (uniqueness, RLS, schema). Vitest (crypto round trip).
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T1.2 · Customer UI and actions — Must · M
@@ -574,7 +579,7 @@ flowchart LR
   - Sales reading `partner_bank_account` gets no rows.
   - Overlapping agreements are rejected.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T1.4 · Partner UI — Must · M
@@ -614,7 +619,7 @@ flowchart LR
   - A product without a UoM is rejected (FR-PROD-02 AC).
   - A second represented OEM for an exclusive product is blocked unless the override approval is set (FR-OEM-03 AC).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T1.6 · Product UI — Must · M
@@ -669,7 +674,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** The 501st line raises `FR-RFI-02: maximum 500 lines`. An invalid status jump is rejected.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T2.2 · Requirement create, list and detail — Must · M
@@ -830,7 +835,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** A commitment without evidence is rejected (US-03). Updating a commitment's qty in place is blocked; a change must create a new version.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T3.2 · OEM shortlist suggestion and confirmation — Must · M
@@ -911,7 +916,7 @@ flowchart LR
   - Indication 800 only → committed 0, uncovered 1,000.
   - An expired commitment is excluded.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T4.2 · Coverage override with owner approval — Must · S
@@ -972,7 +977,7 @@ flowchart LR
   - Updating an approved line fails.
   - Operations cannot select margin columns.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T5.2 · Quote builder with pricing build-up — Must · L
@@ -1166,7 +1171,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** A PO on a draft version fails with a BR-02 message (FR-PO-01 AC).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T7.2 · PO capture UI — Must · M
@@ -1288,7 +1293,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** Offered 100, cleared 90, held 10 → dispatch 100 fails with BR-13, and dispatch 90 succeeds. With an approved override for 10, dispatching 10 more succeeds and carries `override_id` (US-10).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T8.4 · Dispatch UI — Must · S
@@ -1367,7 +1372,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** 500 cleared with 300 invoiced → invoicing 250 fails (max 200). Net 1,000 + tax 180 ≠ gross 1,200 fails (US-13).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T9.2 · Invoice UI — Must · M
@@ -1401,7 +1406,7 @@ flowchart LR
   - An over-allocation fails.
   - One payment across 3 invoices updates all three (US-14).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T9.4 · Payment and deduction UI — Must · M
@@ -1471,7 +1476,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** After 2 extensions and 1 renewal, all 4 validity dates are retrievable, and the effective date is correct (FR-DOC-02 AC). Updating an extension fails.
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T10.2 · Compliance UI and evidence badges — Must · M
@@ -1524,7 +1529,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** Searching "DX1001" finds "DX-1001". Searching "4711 002 300" (fictional) finds it stored with spaces. A sales user in assigned-accounts mode does not see other accounts.
 - **Tests:** pgTAP (matching and RLS).
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T11.2 · Global search and comparable-history pages — Must · M
@@ -1557,7 +1562,7 @@ flowchart LR
 - **UI states:** n/a
 - **Acceptance:** For every tile, the tile count equals the drill-down count (FR-DASH-01 AC).
 - **Tests:** pgTAP.
-- **Verify:** `supabase test db`.
+- **Verify:** Hosted validation project: remote pgTAP runner green.
 - **Done:** Merged.
 
 #### T12.2 · Role-aware dashboard UI — Must · M
@@ -1839,7 +1844,7 @@ Copy one prompt per phase into the AI coding agent. Each prompt assumes the repo
 > - Every list or panel uses `<DataState>`.
 > - Never fake a feature. Unbuilt items use `<PlannedFeature>`.
 >
-> Before finishing, run: `npm run lint && npm run typecheck && npm run test && supabase db reset && supabase test db && npx playwright test`. Then deploy to preview and repeat the task verification steps. Report each task's acceptance criteria as PASS/FAIL with evidence. Stop and report if anything fails.
+> Before finishing, run: `npm run lint && npm run typecheck && npm run test && npm run db:push && npm run db:test:remote && npx playwright test`. Then deploy to preview and repeat the task verification steps. Report each task's acceptance criteria as PASS/FAIL with evidence. Stop and report if anything fails.
 
 **Phase 0 prompt**
 > Build Phase 0 of IMPLEMENTATION-PLAN.md, tasks T0.1–T0.9, in order. Scaffold Next.js App Router (TS strict), Tailwind, shadcn/ui, Vitest and Playwright. Create the Supabase base schema, audit/status/transition framework and approval framework (`supabase/migrations/*_T0.2…T0.4*.sql` with pgTAP tests). Add Supabase Auth with `@supabase/ssr`, `defineAction`, `guard`, env validation, the layout shell, `<DataState>`, `<StatusBadge>` and `<PlannedFeature>`. Add one-click demo sign-in for 5 roles, guarded by `DEMO_MODE`, and the CI workflow (including the RLS assertion and the client-bundle secret scan). Deploy to Vercel with the Supabase demo project. Checks: all T0.x acceptance criteria. The smoke test logs in as each role on the deployed URL without typing a password.
@@ -1944,7 +1949,7 @@ Migrations are applied in this order. Each step depends only on earlier steps. V
 | 45 | T15.1 | `v_audit_event` |
 | 46 | T15.3 | `demo_reset` job (demo only) |
 
-**Rule:** After every migration, CI runs `db reset` from zero, so the order is always proven.
+**Rule:** After every migration, CI pushes to the hosted validation project, runs the remote pgTAP suite, and executes the RLS assertion through the same connection. The validation project is reset only through its documented hosted cleanup/seed workflow.
 
 ---
 
