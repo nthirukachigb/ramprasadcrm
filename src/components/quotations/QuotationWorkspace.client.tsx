@@ -7,6 +7,7 @@ import { Loader2, Save, Send, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
 import { ComparableHistory } from "@/components/history/ComparableHistory";
+import { CreatePoButton } from "@/components/orders/CreatePoButton.client";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -199,6 +200,9 @@ export function QuotationWorkspace({
                 </Button>
               ) : null}
             </>
+          ) : null}
+          {version.status === "approved" || version.status === "submitted" ? (
+            <CreatePoButton versionId={version.id} />
           ) : null}
         </span>
       </div>
