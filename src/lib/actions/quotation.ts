@@ -252,10 +252,24 @@ export interface ComparableRow {
   quotation_line_id: string;
   requirement_id: string;
   requirement_ref: string | null;
+  quotation_version_id?: string;
+  quotation_id?: string;
   version_no: number;
   proposed_unit_price: number | null;
+  negotiated_unit_price?: number | null;
+  po_unit_rate?: number | null;
+  oem_name?: string | null;
+  oem_cost_unit?: number | null;
+  margin_pct?: number | null;
+  lead_time_days?: number | null;
   line_outcome: string | null;
+  loss_reason?: string | null;
   match_basis: string;
+  competitor?: string | null;
+  winning_price?: number | null;
+  pdi_rejected_qty?: number | null;
+  is_migrated?: boolean;
+  is_validated?: boolean;
 }
 
 export async function getComparableHistory(
@@ -263,6 +277,9 @@ export async function getComparableHistory(
 ): Promise<{ ok: true; rows: ComparableRow[] } | { ok: false; error: string }> {
   const user = await getCurrentUser();
   if (!user) return { ok: false, error: "Please sign in again." };
+  if (!user.roles.some((role) => ["owner", "sales", "admin"].includes(role))) {
+    return { ok: false, error: "Comparable history is available to Sales, Owner or Admin." };
+  }
 
   const supabase = await createClient();
   const { data, error } = await supabase.rpc("comparable_history", {

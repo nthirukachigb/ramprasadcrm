@@ -24,6 +24,7 @@
     "verify:phase6": "tsx scripts/verify-phase6.ts",
     "verify:phase7": "tsx scripts/verify-phase7.ts",
     "verify:phase8": "tsx scripts/verify-phase8.ts",
+    "verify:phase11": "tsx scripts/verify-phase11.ts",
     "format": "prettier --write ."
   },
   "dependencies": {

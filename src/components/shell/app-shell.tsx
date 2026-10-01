@@ -32,6 +32,7 @@ import { Bell } from "@/components/notifications/Bell";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -291,6 +292,14 @@ export function AppShell({
             <span className="truncate text-sm font-semibold md:hidden">
               Defence Contract CRM
             </span>
+
+            <form action="/search" method="get" className="ml-2 hidden max-w-sm flex-1 md:flex">
+              <label htmlFor="global-search" className="sr-only">Search records</label>
+              <div className="relative w-full">
+                <Search className="text-muted-foreground pointer-events-none absolute top-2.5 left-2 size-4" aria-hidden="true" />
+                <Input id="global-search" name="q" placeholder="Search records or part number…" className="h-8 pl-8" />
+              </div>
+            </form>
 
             <div className="ml-auto flex items-center gap-2">
               <div className="hidden items-center gap-1 lg:flex">
