@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ClipboardList, FileText, Timer } from "lucide-react";
 
-import { PlannedTile, Tile } from "@/components/dashboard/Tile";
+import { Tile } from "@/components/dashboard/Tile";
 import { PageHeader } from "@/components/page-header";
 import { requireUser } from "@/lib/auth/get-user";
 import { createClient } from "@/lib/supabase/server";
@@ -13,12 +13,6 @@ interface Kpi {
   count_value: number;
   as_of: string;
 }
-const PLANNED = [
-  { code: "D-04", label: "Quotes awaiting response", phase: 12 },
-  { code: "D-07", label: "OEM responses pending", phase: 3 },
-  { code: "D-14", label: "Payments due", phase: 9 },
-];
-
 export default async function DashboardPage() {
   await requireUser();
   const supabase = await createClient();
@@ -71,6 +65,30 @@ export default async function DashboardPage() {
           definition="Lines with uncovered quantity and no approved override."
           href="/requirements?tile=d08"
           asOf={byCode.get("D-08")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-04"
+          label="Quotes awaiting response"
+          count={count("D-04")}
+          definition="Submitted quotations awaiting a customer response."
+          href="/quotations?tile=d04"
+          asOf={byCode.get("D-04")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-07"
+          label="OEM responses pending"
+          count={count("D-07")}
+          definition="Sourcing requests sent to an OEM without a completed response."
+          href="/oem-sourcing?tile=d07"
+          asOf={byCode.get("D-07")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-14"
+          label="Payments due"
+          count={count("D-14")}
+          definition="Open invoice balances due within the configured payment window."
+          href="/payments?tile=d14"
+          asOf={byCode.get("D-14")?.as_of ?? asOf}
         />
         <Tile
           code="D-05"
@@ -136,14 +154,6 @@ export default async function DashboardPage() {
           href="/documents"
           asOf={byCode.get("D-18")?.as_of ?? asOf}
         />
-        {PLANNED.map((tile) => (
-          <PlannedTile
-            key={tile.code}
-            code={tile.code}
-            label={tile.label}
-            reason={`Available after Phase ${tile.phase}. This tile shows "—", never a false zero.`}
-          />
-        ))}
       </div>
 
       <div className="text-muted-foreground flex items-center gap-2 text-sm">
