@@ -17,7 +17,6 @@ const PLANNED = [
   { code: "D-04", label: "Quotes awaiting response", phase: 12 },
   { code: "D-07", label: "OEM responses pending", phase: 3 },
   { code: "D-14", label: "Payments due", phase: 9 },
-  { code: "D-18", label: "Documents nearing expiry", phase: 10 },
 ];
 
 export default async function DashboardPage() {
@@ -128,6 +127,14 @@ export default async function DashboardPage() {
           definition="PO lines with a remaining ordered-minus-accepted quantity."
           href="/orders"
           asOf={byCode.get("D-13")?.as_of ?? asOf}
+        />
+        <Tile
+          code="D-18"
+          label="Documents nearing expiry"
+          count={count("D-18")}
+          definition="Certificate or document records expiring within the configured warning window."
+          href="/documents"
+          asOf={byCode.get("D-18")?.as_of ?? asOf}
         />
         {PLANNED.map((tile) => (
           <PlannedTile

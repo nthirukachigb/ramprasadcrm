@@ -4,6 +4,7 @@ import { randomUUID } from "node:crypto";
 
 import { revalidatePath } from "next/cache";
 
+import { friendlyError } from "@/lib/actions/errors";
 import { getCurrentUser, type AppRole } from "@/lib/auth/get-user";
 import { checkUpload, signedUrlTtlSeconds } from "@/lib/platform/storage";
 import { createClient } from "@/lib/supabase/server";
@@ -208,4 +209,104 @@ export async function getDocumentSignedUrl(
   });
 
   return { ok: true, url: signed.signedUrl };
+}
+
+export async function createComplianceApproval(input: {
+  authority: string;
+  certificateNo: string;
+  certificateDate: string;
+  validUntil: string;
+  applyForRenewalBy?: string | null;
+  notes?: string | null;
+}): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Please sign in again." };
+  if (!user.roles.some((role) => WRITE_ROLES.includes(role))) {
+    return { ok: false, error: "You do not have permission to manage certificates." };
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("compliance_approval")
+    .insert({
+      authority: input.authority.trim(),
+      certificate_no: input.certificateNo.trim(),
+      certificate_date: input.certificateDate,
+      valid_until: input.validUntil,
+      apply_for_renewal_by: input.applyForRenewalBy ?? null,
+      notes: input.notes ?? null,
+      created_by: user.id,
+      updated_by: user.id,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) return { ok: false, error: friendlyError(error?.message ?? "", error?.code) };
+
+  revalidatePath("/documents");
+  return { ok: true, id: data.id };
+}
+
+export async function addCertificateExtension(input: {
+  approvalId: string;
+  seq: number;
+  extendedUntil: string;
+  reason?: string | null;
+}): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Please sign in again." };
+  if (!user.roles.some((role) => WRITE_ROLES.includes(role))) {
+    return { ok: false, error: "You do not have permission to manage certificates." };
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("certificate_extension")
+    .insert({
+      approval_id: input.approvalId,
+      seq: input.seq,
+      extended_until: input.extendedUntil,
+      reason: input.reason ?? null,
+      created_by: user.id,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) return { ok: false, error: friendlyError(error?.message ?? "", error?.code) };
+
+  revalidatePath("/documents");
+  return { ok: true, id: data.id };
+}
+
+export async function addCertificateRenewal(input: {
+  predecessorId: string;
+  successorId: string;
+  renewalDate: string;
+  newValidUntil: string;
+  reason?: string | null;
+}): Promise<{ ok: true; id: string } | { ok: false; error: string }> {
+  const user = await getCurrentUser();
+  if (!user) return { ok: false, error: "Please sign in again." };
+  if (!user.roles.some((role) => WRITE_ROLES.includes(role))) {
+    return { ok: false, error: "You do not have permission to manage certificates." };
+  }
+
+  const supabase = await createClient();
+  const { data, error } = await supabase
+    .from("certificate_renewal")
+    .insert({
+      predecessor_id: input.predecessorId,
+      successor_id: input.successorId,
+      renewal_date: input.renewalDate,
+      new_valid_until: input.newValidUntil,
+      reason: input.reason ?? null,
+      created_by: user.id,
+    })
+    .select("id")
+    .single();
+
+  if (error || !data) return { ok: false, error: friendlyError(error?.message ?? "", error?.code) };
+
+  revalidatePath("/documents");
+  return { ok: true, id: data.id };
 }
