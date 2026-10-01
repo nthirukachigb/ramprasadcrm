@@ -8,6 +8,10 @@ import { createClient } from "@/lib/supabase/server";
 
 export const metadata: Metadata = { title: "Payments" };
 
+function calculateAgeDays(dueDate: string, now = Date.now()): number {
+  return Math.max(0, Math.ceil((now - new Date(dueDate).getTime()) / 86400000));
+}
+
 export default async function PaymentsPage() {
   const user = await requireUser();
   const canWrite = canWriteRequirements(user.roles);
@@ -53,7 +57,7 @@ export default async function PaymentsPage() {
     const balanceAmount = Number(invoice.gross_amount ?? 0) - paidAmount - deductionAmount;
     const invoiceDate = new Date(invoice.invoice_date);
     const dueDate = invoice.due_date ? new Date(invoice.due_date) : invoiceDate;
-    const ageDays = Math.max(0, Math.ceil((Date.now() - dueDate.getTime()) / 86400000));
+    const ageDays = calculateAgeDays(dueDate.toISOString());
 
     return {
       id: invoice.id,

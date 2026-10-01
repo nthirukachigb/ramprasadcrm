@@ -107,7 +107,7 @@ async function main() {
   }
 
   // T4.1 · 1,000 required, OEM A 600 + OEM B 400 firm → uncovered 0 ----------
-  const cA = await admin
+  await admin
     .from("quantity_commitment")
     .insert({
       requirement_line_id: lineA,

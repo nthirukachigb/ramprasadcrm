@@ -5,7 +5,6 @@ import { useRouter } from "next/navigation";
 import { FolderOpen, Plus } from "lucide-react";
 import { toast } from "sonner";
 
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -103,12 +102,6 @@ export function ComplianceWorkspace({
           ) : (
             <ul className="space-y-2 text-sm">
               {certificates.map((certificate) => {
-                const effectiveDate = certificate.valid_until;
-                const expired = effectiveDate && new Date(effectiveDate) < new Date();
-                const expiringSoon =
-                  effectiveDate &&
-                  new Date(effectiveDate).getTime() - Date.now() < 45 * 24 * 60 * 60 * 1000;
-
                 return (
                   <li key={certificate.id} className="rounded-md border p-2">
                     <div className="flex flex-wrap items-center gap-2">

@@ -13,7 +13,7 @@ for the synthetic demo deployment and must be rechecked against production setti
 | Browser capability minimisation | Implemented | `Permissions-Policy` in `next.config.ts` |
 | HTTPS transport policy | Implemented for deployed HTTPS environments | HSTS in `next.config.ts`; verify local HTTP is not used for production |
 | Privileged Supabase client isolation | Implemented | Service-role client is server-only |
-| Audit viewer | Implemented | `/admin/audit`, owner/admin guarded |
+| Audit viewer | Implemented | `/admin/audit` with owner/admin guard, filters, old/new diff and access-logged CSV export |
 | Secret scanning and dependency review | To verify in CI/deployment | Run the repository security pipeline before release |
 | CSP and rate limiting | Follow-up | Requires deployment-specific Supabase and authentication endpoints |
 
