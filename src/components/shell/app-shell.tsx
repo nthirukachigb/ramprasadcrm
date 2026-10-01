@@ -7,6 +7,7 @@ import {
   BadgeIndianRupee,
   Boxes,
   Building2,
+  CheckSquare,
   ClipboardCheck,
   ClipboardList,
   FileText,
@@ -27,6 +28,7 @@ import {
 } from "lucide-react";
 
 import { DemoBanner } from "@/components/auth/demo-banner";
+import { Bell } from "@/components/notifications/Bell";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -65,6 +67,7 @@ export const NAV_ITEMS: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Requirements", href: "/requirements", icon: ClipboardList },
   { label: "Approvals", href: "/approvals", icon: ClipboardCheck },
+  { label: "Tasks", href: "/tasks", icon: CheckSquare },
   { label: "OEM Sourcing", href: "/oem-sourcing", icon: Send },
   { label: "Quotations", href: "/quotations", icon: FileText },
   { label: "Orders", href: "/orders", icon: PackageCheck },
@@ -298,6 +301,7 @@ export function AppShell({
                 ))}
               </div>
               <Separator orientation="vertical" className="hidden h-6 lg:block" />
+              <Bell />
               <UserMenu user={user} />
             </div>
           </header>

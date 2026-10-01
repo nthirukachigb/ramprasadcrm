@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Loader2, Save, Send, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -207,6 +208,15 @@ export function QuotationWorkspace({
           Waiting for Owner approval.
         </p>
       ) : null}
+
+      <div className="flex flex-wrap gap-2">
+        <Button asChild size="sm" variant="outline">
+          <Link href={`/quotations/${version.id}/responses`}>Customer response</Link>
+        </Button>
+        <Button asChild size="sm" variant="outline">
+          <Link href={`/quotations/${version.id}/outcome`}>Outcome</Link>
+        </Button>
+      </div>
 
       {gateErrors.length > 0 ? (
         <div className="rounded-md border border-red-300 bg-red-50 p-3 text-sm text-red-900">
