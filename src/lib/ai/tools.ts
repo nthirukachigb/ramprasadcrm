@@ -124,14 +124,16 @@ export function sanitizeToolCall(name: string, raw: unknown) {
 
   const parsed = tool.schema.safeParse(raw ?? {});
   if (!parsed.success) {
+    const fieldErrors = parsed.error.flatten().fieldErrors;
+    const formattedFieldErrors = Object.entries(fieldErrors).flatMap(([field, messages]) =>
+      (messages ?? []).map((message) => `${field}: ${message}`),
+    );
+
     return {
       success: false as const,
-      error: parsed.error.issues
-        .map((issue) => {
-          const path = issue.path.length > 0 ? `${issue.path.join(".")}: ` : "";
-          return `${path}${issue.message}`;
-        })
-        .join(", "),
+      error: (formattedFieldErrors.length > 0 ? formattedFieldErrors : parsed.error.issues.map((issue) => issue.message)).join(
+        ", ",
+      ),
     };
   }
 

@@ -60,6 +60,14 @@ export default async function RequirementLinesPage({
       <PageHeader
         title="Lines"
         description="Enter or paste up to 500 line items. Row errors are shown before anything is saved."
+        actions={
+          <Link
+            href={`/requirements/${id}/lines/import`}
+            className="rounded-md border px-3 py-2 text-sm font-medium hover:bg-muted"
+          >
+            Import Excel/CSV
+          </Link>
+        }
       />
       <LineGrid requirementId={id} initialLines={initialLines} />
     </div>

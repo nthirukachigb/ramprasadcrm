@@ -5,8 +5,8 @@ project_id = "ramprasadcrm"
 [api]
 enabled = true
 port = 54321
-schemas = ["public", "storage", "graphql_public"]
-extra_search_path = ["public", "extensions"]
+schemas = ["public", "storage", "graphql_public", "app", "staging"]
+extra_search_path = ["public", "extensions", "app", "staging"]
 max_rows = 1000
 
 [db]
